@@ -1,0 +1,35 @@
+﻿@using ZentitleSaaSDemo.Utils
+@using ZentitleSaaSDemo.Zentitle
+@using Auth0.AspNetCore.Authentication
+@inject AuthenticationStateProvider AuthState
+@inject ZentitleService Service
+@inject IConfiguration Configuration
+
+<AuthorizeView>
+    <Authorized>
+        @if (Configuration.Auth0Authentication())
+        {
+            <img class="user-picture me-2" src="@_authUserData?.Picture"> @_authUserData?.Username <a href="logout">Log out</a>
+        }
+        else
+        {
+            @_authUserData?.Username <a href="account/logout">Log out</a>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <a href="login?redirectUri=/">Log in</a>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private AuthUserData _authUserData = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _authUserData = await Service.GetAuthUserData();
+
+        await Service.GetLicense();
+
+        await base.OnInitializedAsync();
+    }
+}

@@ -1,0 +1,84 @@
+﻿@page "/floating-feature"
+@using ZentitleSaaSDemo.Zentitle
+@attribute [Authorize]
+
+<PageTitle>ElevateSaaS : Floating feature</PageTitle>
+
+@inject ZentitleService Service
+
+<h4>Floating feature</h4>
+
+@if (_floatingFeature != null)
+{
+    <div class="card mb-3 mt-4" style="width: 18rem;">
+        <div class="card-body">
+            <strong>Active:</strong> @_floatingFeature.Active <strong>/ Available:</strong> @_floatingFeature.Available
+        </div>
+    </div>
+    <div class="d-flex align-items-center">
+        @if (_floatingFeature.Active == 0)
+        {
+            <button class="btn btn-primary" disabled="@_loading" @onclick="Add">Checkout</button>
+        }
+        @if (_floatingFeature.Active > 0)
+        {
+            <button class="btn btn-secondary" disabled="@_loading" @onclick="Remove">Return</button>
+        }
+    </div>
+}
+
+@code {
+    private ActivationFeatureModel? _floatingFeature;
+    private bool _loading;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _floatingFeature = Service.GetFloatingFeature();
+        await base.OnInitializedAsync();
+    }
+
+    private async void Add()
+    {
+        _loading = true;
+        try
+        {
+            _floatingFeature = await Service.CheckoutFloatingFeature();
+        }
+        finally
+        {
+            _loading = false;
+            StateHasChanged();
+        }
+    }
+
+    private async void Remove()
+    {
+        _loading = true;
+        try
+        {
+            _floatingFeature = await Service.ReturnFloatingFeature();
+        }
+        finally
+        {
+            _loading = false;
+            StateHasChanged();
+        }
+    }
+
+    private void LoadData()
+    {
+        _floatingFeature = Service.GetFloatingFeature();
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        Service.OnChange += LoadData;
+    }
+
+    public void Dispose()
+    {
+        Service.OnChange -= LoadData;
+    }
+
+}

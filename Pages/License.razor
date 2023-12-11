@@ -1,0 +1,123 @@
+﻿@page "/license"
+@attribute [Authorize]
+
+<PageTitle>ElevateSaaS : License</PageTitle>
+
+@using ZentitleSaaSDemo.Zentitle
+@using System.Timers
+@using ZentitleSaaSDemo.Utils
+@inject ZentitleService Service
+
+@if (_stateModel != null)
+{
+    <div class="card mb-3">
+        <h4 class="card-header">
+            @_stateModel.Id
+        </h4>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Product Id</th><td>@_stateModel.ProductId</td>
+                </tr>
+                <tr>
+                    <th>Activation Code</th><td>@_authUserData.ActivationCode</td>
+                </tr>
+                <tr>
+                    <th>Entitlement Id</th><td>@_stateModel.EntitlementId</td>
+                </tr>
+                <tr>
+                    <th>Activated</th>
+                    <td>
+                        @_stateModel.Activated.ToString("yyyy-MM-dd HH:mm:ss")
+                    </td>
+                </tr>
+                <tr>
+                    <th>Last Lease</th>
+                    <td>
+                        @_stateModel.LastLease.ToString("yyyy-MM-dd HH:mm:ss")
+                    </td>
+                </tr>
+                <tr>
+                    <th>Lease Expiry</th>
+                    <td>
+                        @_stateModel.LeaseExpiry.ToString("yyyy-MM-dd HH:mm:ss")
+                        <strong>(@_leaseExpirySpan.ToString("c"))</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Enabled features</th>
+                    <td>
+                        @string.Join(", ", Service.ActiveFeatures())
+                    </td>
+                </tr>
+                <tr>
+                    <th>Agility fields</th>
+                    <td>
+                    </td>
+                </tr>
+                @foreach (var item in _stateModel.Attributes)
+                {
+                    <tr>
+                        <td>
+                            <i>@item.Key</i>
+                        </td>
+                        <td>@item.Value</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            <pre>@Service.LicenseJson</pre>
+        </div>
+    </div>
+}
+
+@code {
+
+    private AuthUserData _authUserData = null!;
+    private ActivationStateModel? _stateModel;
+    private TimeSpan _leaseExpirySpan;
+    private TimeSpan _gracePeriodExpiry;
+    private TimeSpan _second = new(0, 0, 0, 1);
+    private static Timer _timer = new(1000);
+
+    protected override void OnInitialized()
+    {
+        Service.OnChange += LoadData;
+        _timer.Elapsed += CountDownTimer;
+        LoadData();
+    }
+
+    public void Dispose()
+    {
+        Service.OnChange -= LoadData;
+    }
+
+    private async void LoadData()
+    {
+        _timer.Stop();
+
+        if (Service.StateModel != null)
+        {
+            var now = DateTime.Now;
+            _stateModel = Service.StateModel;
+            _authUserData = await Service.GetAuthUserData();
+            _leaseExpirySpan = (_stateModel.LeaseExpiry - now).StripMilliseconds();
+            _timer.Start();
+        }
+        else
+        {
+            _stateModel = null;
+        }
+        StateHasChanged();
+    }
+
+    private void CountDownTimer(object? sender, ElapsedEventArgs elapsedEventArgs)
+    {
+        _leaseExpirySpan = _leaseExpirySpan.Add(-_second);
+        _gracePeriodExpiry = _gracePeriodExpiry.Add(-_second);
+        InvokeAsync(StateHasChanged);
+    }
+}

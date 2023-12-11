@@ -1,0 +1,37 @@
+﻿@using ZentitleSaaSDemo.Utils
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+@inject IConfiguration Configuration
+
+<PageTitle>ElevateSaaS</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <AccessControl />
+        </div>
+        <ErrorControl />
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; } = null!;
+
+    protected override async Task OnAfterRenderAsync(bool first)
+    {
+        var user = (await AuthStat).User;
+        if (user.Identity is not {IsAuthenticated: true })
+        {
+            var loginPage = Configuration.Auth0Authentication() ? "login" : "account/login";
+            NavigationManager.NavigateTo($"{loginPage}?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}", true);
+        }
+        await base.OnAfterRenderAsync(first);
+    }
+}

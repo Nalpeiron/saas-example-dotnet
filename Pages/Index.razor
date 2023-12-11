@@ -1,0 +1,29 @@
+﻿@page "/"
+@using ZentitleSaaSDemo.Zentitle
+@attribute [Authorize]
+
+<PageTitle>ElevateSaaS : Home</PageTitle>
+
+@inject ZentitleService Service
+
+<h4>Welcome!</h4>
+@if(Service.HasLicense) {
+    <h5 class="mt-3">This product is licensed to @Service.CompanyName</h5>
+    <h5>Plan: @Service.PlanName</h5>
+}
+else
+{
+    <h5>Login to get your license.</h5>
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        Service.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Service.OnChange -= StateHasChanged;
+    }
+}

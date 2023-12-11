@@ -1,0 +1,36 @@
+﻿@page "/account/login"
+@using Microsoft.AspNetCore.Authorization
+
+@model ZentitleSaaSDemo.Pages.Account.LoginModel
+@{
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<div class="empty-layout">
+    <main>
+        <article class="content">
+            <div class="login-form">
+                <form method="POST">
+                    @Html.AntiForgeryToken()
+                    <div class="header">
+                        <img class="mb-3" src="images/logo.png" width="60" />
+                        <h4 class="text-center">ElevateSaaS</h4>
+                    </div>
+                    <div class="mid">
+                        @Html.ValidationSummary()
+                        <div class="form-group mb-2">
+                            @Html.TextBoxFor(m => m.Model.Email, new { @class = "form-control", @placeholder = "email" })
+                        </div>
+                        <div class="form-group mb-4">
+                            @Html.PasswordFor(m => m.Model.Password, new { @class = "form-control", @placeholder = "password" })
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <button class="btn btn-primary btn-block" type="submit">LOG IN</button>
+                    </div>
+                </form>
+            </div>
+        </article>
+    </main>
+</div>
+

@@ -1,0 +1,126 @@
+﻿@page "/element-pool"
+@using ZentitleSaaSDemo.Zentitle
+@attribute [Authorize]
+
+<PageTitle>ElevateSaaS : Element pool</PageTitle>
+
+@inject ZentitleService Service
+
+<h4>Element pool</h4>
+
+@if (_elementPoolFeature != null)
+{
+    <div class="card mb-3 mt-4" style="width: 18rem;">
+        <div class="card-body">
+            <strong>Active:</strong> @_elementPoolFeature.Active <strong>/ Available:</strong> @_elementPoolFeature.Available
+        </div>
+    </div>
+    <div class="d-flex align-items-center">
+        <input style="width: 70px; border-radius: 5px; line-height: 30px; border: solid 1px;" type="number" @bind="_reqNumber"/>
+        @if (_elementPoolFeature.Available > 0)
+        {
+            <button class="btn btn-primary ms-2" disabled="@_loading" @onclick="Add">Checkout</button>
+        }
+
+        @if (_elementPoolFeature.Active > 0)
+        {
+            <button class="btn btn-secondary ms-2" disabled="@_loading" @onclick="Remove">Return</button>
+        }
+    </div>
+    if (_alert)
+    {
+        <div class="d-inline-flex">
+            <div class="alert alert-danger mt-3" role="alert" style="width:300px">
+                @_message
+            </div>
+        </div>
+    }
+}
+
+@code {
+    private int _reqNumber = 1;
+    private ActivationFeatureModel? _elementPoolFeature;
+    private bool _loading;
+    private string _message = string.Empty;
+    private bool _alert;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _elementPoolFeature = Service.GetElementPoolFeature();
+        await base.OnInitializedAsync();
+    }
+
+    private void SetAlert(string msg)
+    {
+        _message = msg;
+        _alert = true;
+    }
+
+    private void ClearAlert()
+    {
+        _message = string.Empty;
+        _alert = false;
+    }
+
+    private async void Add()
+    {
+        _loading = true;
+        ClearAlert();
+        try
+        {
+            if (_elementPoolFeature == null) return;
+            if (_reqNumber <= _elementPoolFeature.Available)
+            {
+                _elementPoolFeature = await Service.CheckoutElementPoolFeature(_reqNumber);
+            }
+            else
+            {
+                SetAlert($"Please checkout {_elementPoolFeature.Available} or less.");
+            }
+        }
+        finally
+        {
+            _loading = false;
+            StateHasChanged();
+        }
+    }
+
+    private async void Remove()
+    {
+        _loading = true;
+        ClearAlert();
+        try
+        {
+            if (_elementPoolFeature == null) return;
+            if (_reqNumber <= _elementPoolFeature.Active)
+            {
+                _elementPoolFeature = await Service.ReturnElementPoolFeature(_reqNumber);
+            }
+            else
+            {
+                SetAlert($"Please return {_elementPoolFeature.Active} or less.");
+            }
+        }
+        finally
+        {
+            _loading = false;
+            StateHasChanged();
+        }
+    }
+
+    private void LoadData()
+    {
+        _elementPoolFeature = Service.GetElementPoolFeature();
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        Service.OnChange += LoadData;
+    }
+
+    public void Dispose()
+    {
+        Service.OnChange -= LoadData;
+    }
+}

@@ -1,0 +1,106 @@
+@using ZentitleSaaSDemo.Zentitle
+@inject ZentitleService Service
+@inject NavigationManager uriHelper;
+
+<div class="top-row ps-1 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center justify-content-center me-0" @onclick="Reload">
+            <img src="images/logo.png" width="30"/>
+            <div class="ms-2">ElevateSaaS</div>
+        </a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@_navMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="d-flex justify-content-between flex-column">
+        <div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="@(Service.HasFeature("Calendar") ? _activeLink : _disabledLink)" href="calendar">
+                    <span class="oi oi-calendar" aria-hidden="true"></span> Calendar
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="@(Service.HasFeature("ProjectPlanning") ? _activeLink : _disabledLink)" href="project-planning">
+                    <span class="oi oi-spreadsheet" aria-hidden="true"></span> Project Planning
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="@(Service.HasFeature("Collaboration") ? _activeLink : _disabledLink)" href="collaboration">
+                    <span class="oi oi-aperture" aria-hidden="true"></span> Collaboration
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="@(Service.HasFeature("Reporting") ? _activeLink : _disabledLink)" href="reporting">
+                    <span class="oi oi-dashboard" aria-hidden="true"></span> Reporting
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="@(Service.HasFeature("ReportingAdvanced") ? _activeLink : _disabledLink)" href="advanced-reporting">
+                    <span class="oi oi-pie-chart" aria-hidden="true"></span> Reporting Advanced
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="@(Service.HasFeature("Security") ? _activeLink : _disabledLink)" href="security">
+                    <span class="oi oi-shield" aria-hidden="true"></span> Security & Controls
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="@(Service.FeatureExists(ZentitleService.ElementPoolKey) ? _activeLink : _disabledLink)" href="element-pool">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Element pool
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="@(Service.FeatureExists(ZentitleService.FloatingFeatureKey) ? _activeLink : _disabledLink)" href="floating-feature">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Floating feature
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="@(Service.FeatureExists(ZentitleService.ConsumptionTokenKey) ? _activeLink : _disabledLink)" href="consumption-token">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Consumption token
+                </NavLink>
+            </div>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="@(Service.HasLicense ? _activeLink : _disabledLink)" href="license">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> License
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool _collapseNavMenu = true;
+
+    private string? _navMenuCssClass => _collapseNavMenu ? "collapse" : null;
+    private string _activeLink => "nav-link";
+    private string _disabledLink => "nav-link disabled";
+
+    private void Reload()
+    {
+        uriHelper.NavigateTo(uriHelper.Uri, forceLoad: true);
+    }
+
+    private void ToggleNavMenu()
+    {
+        _collapseNavMenu = !_collapseNavMenu;
+    }
+
+    protected override void OnInitialized()
+    {
+        Service.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Service.OnChange -= StateHasChanged;
+    }
+
+}

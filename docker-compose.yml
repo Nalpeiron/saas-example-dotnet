@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  web:
+    image: orion-saas-demo
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: orion-saas-demo
+    environment:
+      Zentitle__ClientId: ""
+      Zentitle__ClientSecret: ""
+      Zentitle__AuthServiceUrl: ""
+      Zentitle__TenantId: ""
+      Zentitle__ZentitleUrl: ""
+      Zentitle__Entitlement__ProductId: ""
+      Users__0__Email: "user1@example.com"
+      Users__0__Password: "password"
+      Users__0__ActivationCode: "activation-code"
+      Users__1__Email: "user2@example.com"
+      Users__1__Password: "password"
+      Users__1__ActivationCode: "activation-code"
+      ASPNETCORE_hostBuilder__reloadConfigOnChange: "false"
+    ports:
+      - "5701:80"
+

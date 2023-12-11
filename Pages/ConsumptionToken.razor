@@ -1,0 +1,64 @@
+﻿@page "/consumption-token"
+@using ZentitleSaaSDemo.Zentitle
+@attribute [Authorize]
+
+<PageTitle>ElevateSaaS : Consumption token</PageTitle>
+
+@inject ZentitleService Service
+
+<h4>Consumption token</h4>
+
+@if (_consumptionToken != null)
+{
+    <div class="card mb-3 mt-4" style="width: 18rem;">
+        <div class="card-body">
+            <strong>Available:</strong> @_consumptionToken.Available
+        </div>
+    </div>
+    if (_consumptionToken.Available > 0)
+    {
+        <button class="btn btn-primary" disabled="@_loading" @onclick="Add">Checkout</button>
+    }
+}
+
+@code {
+    private ActivationFeatureModel? _consumptionToken;
+    private bool _loading;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _consumptionToken = Service.GetConsumptionToken();
+        await base.OnInitializedAsync();
+    }
+
+    private async void Add()
+    {
+        _loading = true;
+        try
+        {
+            _consumptionToken = await Service.CheckoutConsumptionToken();
+        }
+        finally
+        {
+            _loading = false;
+            StateHasChanged();
+        }
+    }
+
+    private void LoadData()
+    {
+        _consumptionToken = Service.GetConsumptionToken();
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        Service.OnChange += LoadData;
+    }
+
+    public void Dispose()
+    {
+        Service.OnChange -= LoadData;
+    }
+
+}
