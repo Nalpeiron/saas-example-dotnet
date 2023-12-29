@@ -16,7 +16,6 @@ namespace ZentitleSaaSDemo.Pages
 
         public async Task OnGet(string redirectUri)
         {
-            _service.RemoveCache();
             var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
                 .Build();
 

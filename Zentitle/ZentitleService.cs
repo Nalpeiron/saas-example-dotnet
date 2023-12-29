@@ -3,7 +3,6 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ZentitleSaaSDemo.Settings;
-using ZentitleSaaSDemo.Utils;
 using ZentitleSaaSDemo.Zentitle.Auth;
 
 namespace ZentitleSaaSDemo.Zentitle;
@@ -15,11 +14,13 @@ public sealed class ZentitleService
     private readonly EntitlementOptions _entitlementOptions;
     private readonly IMemoryCache _cache;
     private readonly AuthenticationStateProvider _authenticationStateProvider;
+    private readonly AuthUserDataService _authUserDataService;
     private readonly IHttpClientFactory _httpClientFactory;
-    private const string TokenKey = "ZentitleSeatToken";
+
     private const string CompanyAttributeKey = "CompanyName";
     private const string PlanNameAttributeKey = "PlanName";
     private const int MaxSeatIdLength = 50;
+    private string? _tokenKey;
     public ActivationStateModel? StateModel { get; private set; }
     public string? LicenseJson { get; private set; }
     public bool HasLicense => StateModel != null;
@@ -36,9 +37,11 @@ public sealed class ZentitleService
         IOptions<ZentitleOptions> zentitleOptions,
         IOptions<EntitlementOptions> entitlementOptions,
         IMemoryCache cache,
+        AuthUserDataService authUserDataService,
         AuthenticationStateProvider authenticationStateProvider,
         IAuthServiceClient authServiceClient)
     {
+        _authUserDataService = authUserDataService ?? throw new ArgumentNullException(nameof(authUserDataService));
         _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
         _entitlementOptions = entitlementOptions.Value ?? throw new ArgumentNullException(nameof(entitlementOptions));
         _zentitleOptions = zentitleOptions.Value ?? throw new ArgumentNullException(nameof(zentitleOptions));
@@ -75,7 +78,7 @@ public sealed class ZentitleService
 
     public async Task Deactivate()
     {
-        var tokenExists = _cache.TryGetValue(TokenKey, out ActivationModel cachedActivationModel);
+        var tokenExists = _cache.TryGetValue(await TokenKey(), out ActivationModel cachedActivationModel);
 
         if (!(tokenExists && cachedActivationModel!.IsAccessTokenValid()))
         {
@@ -159,26 +162,14 @@ public sealed class ZentitleService
         return GetElementPoolFeature();
     }
 
-    public void RemoveCache()
+    public async Task RemoveCache()
     {
-        var tokenExists = _cache.TryGetValue(TokenKey, out _);
+        var tokenKey = await TokenKey();
+        var tokenExists = _cache.TryGetValue(tokenKey, out _);
         if (tokenExists)
         {
-            _cache.Remove(TokenKey);
+            _cache.Remove(tokenKey);
         }
-    }
-
-    public async Task<AuthUserData> GetAuthUserData()
-    {
-        var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
-        var email = user.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value;
-        var activationCode = user.FindFirst(ConstValues.ActivationCodeClaim)?.Value;
-        var picture = user.FindFirst(c => c.Type.Equals("picture"))?.Value;
-        var username = authState.User.Identity?.Name ?? string.Empty;
-
-        return new AuthUserData()
-            { Email = email, Picture = picture, Username = username, ActivationCode = activationCode };
     }
 
     public event Action? OnChange;
@@ -270,7 +261,7 @@ public sealed class ZentitleService
 
     private async Task<ActivationModel?> SeatActivate()
     {
-        var authUserData = await GetAuthUserData();
+        var authUserData = await _authUserDataService.GetAuthUserData();
         var email = authUserData.Email;
         var activationCode = authUserData.ActivationCode;
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(activationCode))
@@ -287,7 +278,7 @@ public sealed class ZentitleService
         };
 
         var result = await activationsClient.ActivateAsync(r);
-        UpdateTokenInCache(false, result);
+        await UpdateTokenInCache(false, result);
 
         return result;
     }
@@ -311,7 +302,8 @@ public sealed class ZentitleService
 
     private async Task<string?> RequestSeat()
     {
-        var tokenExists = _cache.TryGetValue(TokenKey, out ActivationModel cachedActivationModel);
+        var tokenKey = TokenKey();
+        var tokenExists = _cache.TryGetValue(tokenKey, out ActivationModel cachedActivationModel);
 
         if (tokenExists && cachedActivationModel!.IsAccessTokenValid())
         {
@@ -324,18 +316,30 @@ public sealed class ZentitleService
             return string.Empty;
         }
 
-        UpdateTokenInCache(tokenExists, activationModel);
+        await UpdateTokenInCache(tokenExists, activationModel);
 
         return activationModel.Id;
     }
 
-    private void UpdateTokenInCache(bool tokenExists, ActivationModel token)
+    private async Task UpdateTokenInCache(bool tokenExists, ActivationModel token)
     {
+        var tokenKey = await TokenKey();
         if (tokenExists)
         {
-            _cache.Remove(TokenKey);
+            _cache.Remove(tokenKey);
         }
 
-        _cache.Set(TokenKey, token, token.GetSeatExpiresIn(1));
+        _cache.Set(tokenKey, token, token.GetSeatExpiresIn(1));
+    }
+
+    private async Task<string> TokenKey()
+    {
+        if(_tokenKey == null)
+        {
+            var userData = await _authUserDataService.GetAuthUserData();
+            _tokenKey = $"ZentitleSeatToken-{userData.Email}-{userData.ActivationCode}";
+        }
+
+        return _tokenKey;
     }
 }

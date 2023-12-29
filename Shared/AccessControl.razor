@@ -4,17 +4,16 @@
 @inject AuthenticationStateProvider AuthState
 @inject ZentitleService Service
 @inject IConfiguration Configuration
+@inject AuthUserDataService AuthUserDataService
+@inject NavigationManager NavigationManager
 
 <AuthorizeView>
     <Authorized>
-        @if (Configuration.Auth0Authentication())
+        @if (!string.IsNullOrEmpty(_authUserData?.Picture))
         {
-            <img class="user-picture me-2" src="@_authUserData?.Picture"> @_authUserData?.Username <a href="logout">Log out</a>
+            <img class="user-picture me-2" src="@_authUserData?.Picture">
         }
-        else
-        {
-            @_authUserData?.Username <a href="account/logout">Log out</a>
-        }
+        @_authUserData?.Username <span class="log-out btn-link" @onclick="Logout">Log out</span>
     </Authorized>
     <NotAuthorized>
         <a href="login?redirectUri=/">Log in</a>
@@ -26,10 +25,18 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _authUserData = await Service.GetAuthUserData();
+        _authUserData = await AuthUserDataService.GetAuthUserData();
 
         await Service.GetLicense();
 
         await base.OnInitializedAsync();
     }
+
+    private async Task Logout()
+    {
+        await Service.Deactivate();
+        await Service.RemoveCache();
+        NavigationManager.NavigateTo(Configuration.Auth0Authentication() ? "logout" : "account/logout", true);
+    }
+
 }

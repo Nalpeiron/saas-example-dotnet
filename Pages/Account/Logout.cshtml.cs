@@ -17,8 +17,6 @@ namespace ZentitleSaaSDemo.Pages.Account
         public async Task<IActionResult> OnGet()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            await _service.Deactivate();
-            _service.RemoveCache();
 
             return Redirect("/");
         }

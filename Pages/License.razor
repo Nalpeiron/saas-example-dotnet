@@ -7,6 +7,7 @@
 @using System.Timers
 @using ZentitleSaaSDemo.Utils
 @inject ZentitleService Service
+@inject AuthUserDataService AuthUserDataService
 
 @if (_stateModel != null)
 {
@@ -103,7 +104,7 @@
         {
             var now = DateTime.Now;
             _stateModel = Service.StateModel;
-            _authUserData = await Service.GetAuthUserData();
+            _authUserData = await AuthUserDataService.GetAuthUserData();
             _leaseExpirySpan = (_stateModel.LeaseExpiry - now).StripMilliseconds();
             _timer.Start();
         }

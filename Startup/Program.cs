@@ -9,6 +9,7 @@ using ZentitleSaaSDemo.Settings;
 using ZentitleSaaSDemo.Startup.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ZentitleSaaSDemo.Models.Account;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,7 @@ builder.Services.ConfigureHealthChecks();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddScoped<AuthUserDataService>();
 builder.Services.AddScoped<ZentitleService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();

@@ -7,42 +7,44 @@ namespace ZentitleSaaSDemo.Zentitle.Auth;
 
 public class AuthService : IAuthServiceClient
 {
+    private readonly AuthUserDataService _authUserDataService;
     private readonly HttpClient _httpClient;
     private readonly ILogger<AuthService> _logger;
     private readonly IMemoryCache _cache;
     private readonly ClientCredentialsTokenRequest _tokenRequest;
-    private const string TokenKey = "ClientRealmToken";
     private AuthCredentials? _credentials = null;
+    private string? _tokenKey;
     private readonly ZentitleOptions _options;
 
     public AuthService(
         HttpClient httpClient,
         IOptions<ZentitleOptions> options,
         ILogger<AuthService> logger,
-        IMemoryCache memoryCache
-
-        )
+        IMemoryCache memoryCache,
+        AuthUserDataService authUserDataService
+    )
     {
+        _authUserDataService = authUserDataService ?? throw new ArgumentNullException(nameof(authUserDataService));
         _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _cache = memoryCache ?? throw new ArgumentNullException(nameof(memoryCache));
         _options = options.Value ?? throw new ArgumentNullException(nameof(options));
         _credentials = GetCredentials();
-        
+
         _tokenRequest = _credentials.GetClientCredentialsTokenRequest();
         _httpClient.BaseAddress = _credentials.GetAuthority();
     }
 
     public async Task<string> RequestAccessToken()
     {
-        var tokenExists = _cache.TryGetValue(TokenKey, out TokenResponse token);
+        var tokenExists = _cache.TryGetValue(await TokenKey(), out TokenResponse token);
 
         if (!tokenExists)
         {
             token = await RequestNewAccessToken();
 
-            UpdateTokenInCache(tokenExists, token);
-        }        
+            await UpdateTokenInCache(tokenExists, token);
+        }
         else if (!token.IsAccessTokenValid())
         {
             if (!token.IsRefreshTokenValid())
@@ -54,17 +56,15 @@ public class AuthService : IAuthServiceClient
                 token = await RefreshToken(token);
             }
 
-            UpdateTokenInCache(tokenExists, token);
+            await UpdateTokenInCache(tokenExists, token);
         }
 
         return token.AccessToken;
     }
 
-    public Task InvalidateAccessToken()
+    public async Task InvalidateAccessToken()
     {
-        _cache.Remove(TokenKey);
-
-        return Task.CompletedTask;
+        _cache.Remove(await TokenKey());
     }
 
     private async Task<TokenResponse> RequestNewAccessToken()
@@ -97,14 +97,15 @@ public class AuthService : IAuthServiceClient
         return tokenResponse;
     }
 
-    private void UpdateTokenInCache(bool tokenExists, TokenResponse token)
+    private async Task UpdateTokenInCache(bool tokenExists, TokenResponse token)
     {
+        var tokenKey = await TokenKey();
         if (tokenExists)
         {
-            _cache.Remove(TokenKey);
+            _cache.Remove(tokenKey);
         }
 
-        var entry = _cache.CreateEntry(TokenKey);
+        var entry = _cache.CreateEntry(tokenKey);
         var refreshTokenExpiresIn = token.GetRefreshTokenExpiresIn();
 
         if (refreshTokenExpiresIn.HasValue)
@@ -121,7 +122,7 @@ public class AuthService : IAuthServiceClient
 
         entry.Value = token;
     }
-    
+
     private RefreshTokenRequest CreateRefreshTokenRequest(TokenResponse token)
     {
         token = token ?? throw new ArgumentNullException(nameof(token));
@@ -136,7 +137,7 @@ public class AuthService : IAuthServiceClient
 
         return refreshTokenRequest;
     }
-    
+
     private AuthCredentials GetCredentials()
     {
         return _credentials ??= new AuthCredentials(
@@ -144,5 +145,16 @@ public class AuthService : IAuthServiceClient
             _options.ClientId,
             _options.ClientSecret
         );
+    }
+
+    private async Task<string> TokenKey()
+    {
+        if(_tokenKey == null)
+        {
+            var userData = await _authUserDataService.GetAuthUserData();
+            _tokenKey = $"ZentitleSeatToken-{userData.Email}-{userData.ActivationCode}";
+        }
+
+        return _tokenKey;
     }
 }
