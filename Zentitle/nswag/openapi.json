@@ -4,14 +4,14 @@
   "info": {
     "title": "Zentitle2 Management API",
     "description": "## Overview \nThis is the documentation for Zentitle2 Software Licensing Platform for SaaS and On-Premise applications.\n\nPlease provide feedback to your account manager on things you like and things you'd like to see.\n\n## Authentication\nZentitle2 Management API uses OAuth2 over https to manage authentication and authorization. \n\nOAuth2 is an open standard for authorization that enables applications to securely access resources from other apps or services. We use `client_credentials` in the API. \n\nIn the client credentials flow, the app sends a request to the authorization server's token endpoint with its client ID and secret, which are used to authenticate the app. If the request is successful, the authorization server returns an access token, which the app can use to access protected resources on the resource server.\n\nThe client credentials flow is typically used by server-side apps or apps that run in a trusted environment, such as a secure server or device. It allows these apps to access protected resources on behalf of themselves, rather than on behalf of a user. This grant type is not suitable for browser-based apps or mobile apps, as it does not involve user interaction and does not provide a way for users to grant access to their protected resources.\n\nHere is an example of how to generate client credentials for OAuth2:\n\n1. Register your application in the Zentitle2 administration site\n\n2. During the registration process, the authorization server will provide you with a client ID and a client secret. These are unique, secret values that identify your app and are used to authenticate your requests to the authorization server.\n\n3. In order to use the client credentials grant type, your app must be able to securely store the client ID and secret. These values should never be shared or exposed to anyone outside of your app, as they provide access to the authorization server on your app's behalf.\n\n4. Once you have securely stored the client ID and secret, you can begin making requests to the authorization server's token endpoint using the client credentials grant type. This typically involves sending a POST request to the token endpoint, with the client ID and secret provided in the request body.\n\n5. If the request is successful, the authorization server will return an access token, which can be used to access protected resources on the resource server. The access token may also include a refresh token, which can be used to obtain a new access token when the original one expires.\n\nHere is an example code in JavaScript that gets the access token:\n```javascript\nvar body = 'grant_type=client_credentials'\n            + '&client_id=' + clientId\n            + '&client_secret=' + clientSecret;\npm.sendRequest({\n    url: oauth_url,\n    method: 'POST',\n    header: {\n        'Content-Type': 'application/x-www-form-urlencoded',\n        'Accept': 'application/json'\n    },\n    body: {\n        mode: 'raw',\n        raw: body\n    }\n}, function (err, res) {\n    var response = res.json();\n    environment.set(\"access_token\", response.access_token);\n    environment.set(\"token_time\", Date.now() + response.expires_in * 1000);\n});\n```\nAccess token should be sent with every API request in the `Authorization` header as: \n```\nAuthorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI...\n```\n\nWhenever the Authorization section for an endpoint contains more than one role in the list, it means that any of those roles is sufficient to access this endpoint.\n\nAPI requires one more header to be set with Id of your Zentitle2 tenant, for example: \n```\nN-TenantId: t_KRwhRp1yl0_9gsZjE5Yjaw\n```\n## Postman Configuration\nIt's very easy to setup Postman to use with Zentitle2 Management API. \n\n1) Download OpenAPI specification (top of this page) \n2) Import downloaded file to Postman\n3) Select \"No Auth\" in the Auth tab (auth will be done using pre-request script). \n4) Add following script in the pre-request script tab: \n\n```javascript\npm.environment.set(\"baseUrl\", pm.environment.get(\"zentitleApiUrl\"));\n\nvar setAuthHeaders = () => {\n    pm.request.headers.add({key: 'N-TenantId', value: pm.environment.get(\"tenantId\") });\n    pm.request.headers.add({key: 'Authorization', value: pm.environment.get(\"oauth_token\") });\n};\n\nif (pm.environment.get(\"token_time\") && pm.environment.get(\"token_time\") > Date.now()) {\n    setAuthHeaders();\n    return;\n}\n\nvar body = 'grant_type=client_credentials'\n    + '&client_id=' + pm.environment.get(\"clientId\")\n    + '&client_secret=' + pm.environment.get(\"clientSecret\");\npm.sendRequest({\n    url: pm.environment.get(\"oauth_url\"),\n    method: 'POST',\n    header: {\n        'Content-Type': 'application/x-www-form-urlencoded',\n        'Accept': 'application/json'\n    },\n    body: {\n        mode: 'raw',\n        raw: body\n    }\n}, function (err, res) {\n    var response = res.json();\n    pm.environment.set(\"oauth_token\", 'Bearer ' + response.access_token);\n    pm.environment.set(\"token_time\", Date.now() + response.expires_in * 1000);\n\n    setAuthHeaders();\n});\n```\n\n5) Create new Postman Environment with following variables: \n\n```\noauth_url: ---your keycloak URL---  \nclientId: ---your client id---\nclientSecret: ---your client secret---\ntenantId: ---your tenant id---\nzentitleApiUrl: ---api url---\n```\n\n## Responses\n| Status | Meaning    | Description                                                          |\n|--------|------------|----------------------------------------------------------------------|\n| 200    | OK         | Returned after successful GET requests, body contains requested data |\n| 201    | Created    | Returned after successful POST request, body contains created object |\n| 204    | No Content | Returned after successful PUT and  DELETE requests. Body is empty    |\n\nIn case of an error, API returns error status code along with `ApiError` object if applicable.  \n\n## Errors \n\n| Status             | Meaning              | Description                                    |\n|--------------------|----------------------|------------------------------------------------|\n| 400                | Bad Request          | can not parse request body or parameters       |\n| 401                | Unauthorized         | missing or invalid access token                |\n| 402                | Request Failed       | parameters were valid but the request failed   |\n| 403                | Forbidden            | insufficient permissions to perform request    |\n| 404                | Not Found            | requested resource has not been found          |\n| 409                | Conflict             | request conflicts with the current state       |\n| 422                | Unprocessable entity | request parses correctly, but fails validation |\n| 429                | Too many requests    | too many requests hit the API too quickly      |\n| 500, 502, 503, 504 | Server errors        | something went wrong on Zentitle's end         |\n",
-    "version": "v1.0.132",
+    "version": "v1.0.144",
     "x-logo": {
       "url": "/assets/logo.svg",
       "href": "https://docs.zentitle.io/"
     }
   },
   "paths": {
-    "/api/entitlements/activations": {
+    "api/v1/entitlements/activations": {
       "post": {
         "tags": [
           "Activations"
@@ -93,7 +93,7 @@
         ]
       }
     },
-    "/api/entitlements/activations/{activationId}": {
+    "api/v1/entitlements/activations/{activationId}": {
       "delete": {
         "tags": [
           "Activations"
@@ -180,7 +180,7 @@
         ]
       }
     },
-    "/api/entitlements/activations/{activationId}/checkout": {
+    "api/v1/entitlements/activations/{activationId}/checkout": {
       "patch": {
         "tags": [
           "Activations"
@@ -229,7 +229,7 @@
         ]
       }
     },
-    "/api/entitlements/activations/{activationId}/return": {
+    "api/v1/entitlements/activations/{activationId}/return": {
       "patch": {
         "tags": [
           "Activations"
@@ -278,7 +278,7 @@
         ]
       }
     },
-    "/api/account/api-clients": {
+    "api/v1/account/api-clients": {
       "post": {
         "tags": [
           "ApiClients"
@@ -347,7 +347,7 @@
         ]
       }
     },
-    "/api/account/api-clients/{apiId}": {
+    "api/v1/account/api-clients/{apiId}": {
       "delete": {
         "tags": [
           "ApiClients"
@@ -383,7 +383,7 @@
         ]
       }
     },
-    "/api/attributes": {
+    "api/v1/attributes": {
       "post": {
         "tags": [
           "Global attributes"
@@ -425,7 +425,7 @@
                   "$ref": "#/components/schemas/AttributeModel"
                 },
                 "example": {
-                  "id": "atr_8rExcE-kv0qLeJu5dflppQ",
+                  "id": "atr_-z-NcnmSRU_OWsOV5moC5A",
                   "type": "string",
                   "key": "version",
                   "value": "1.0.0",
@@ -480,7 +480,7 @@
         ]
       }
     },
-    "/api/attributes/{attributeId}": {
+    "api/v1/attributes/{attributeId}": {
       "put": {
         "tags": [
           "Global attributes"
@@ -569,7 +569,7 @@
                   "$ref": "#/components/schemas/AttributeModel"
                 },
                 "example": {
-                  "id": "atr_fN9mZUXF30ym5BhIgwDR0w",
+                  "id": "atr_I6uBllrCfUqNzxTMMkyWIw",
                   "type": "string",
                   "key": "version",
                   "value": "1.0.0",
@@ -597,7 +597,7 @@
         ]
       }
     },
-    "/api/customers/{customerId}/admin": {
+    "api/v1/customers/{customerId}/admin": {
       "post": {
         "tags": [
           "Customers"
@@ -742,7 +742,7 @@
         ]
       }
     },
-    "/api/customers/{customerId}/eup": {
+    "api/v1/customers/{customerId}/eup": {
       "get": {
         "tags": [
           "Customers"
@@ -786,7 +786,7 @@
         ]
       }
     },
-    "/api/customers": {
+    "api/v1/customers": {
       "post": {
         "tags": [
           "Customers"
@@ -880,7 +880,7 @@
         ]
       }
     },
-    "/api/customers/{customerId}": {
+    "api/v1/customers/{customerId}": {
       "put": {
         "tags": [
           "Customers"
@@ -982,7 +982,7 @@
         ]
       }
     },
-    "/api/customers/{customerId}/disable": {
+    "api/v1/customers/{customerId}/disable": {
       "patch": {
         "tags": [
           "Customers"
@@ -1018,7 +1018,7 @@
         ]
       }
     },
-    "/api/customers/{customerId}/enable": {
+    "api/v1/customers/{customerId}/enable": {
       "patch": {
         "tags": [
           "Customers"
@@ -1054,7 +1054,7 @@
         ]
       }
     },
-    "/api/products/{productId}/editions/{editionId}/attributes/{attributeId}": {
+    "api/v1/products/{productId}/editions/{editionId}/attributes/{attributeId}": {
       "patch": {
         "tags": [
           "Edition attributes"
@@ -1238,7 +1238,7 @@
                   "$ref": "#/components/schemas/AttributeModel"
                 },
                 "example": {
-                  "id": "atr_b1qcijFbWEmPntssp_ZwHg",
+                  "id": "atr_YOAuaplYTU2QYcaRO9XUlA",
                   "type": "string",
                   "key": "version",
                   "value": "1.0.0",
@@ -1266,7 +1266,7 @@
         ]
       }
     },
-    "/api/products/{productId}/editions/{editionId}/attributes": {
+    "api/v1/products/{productId}/editions/{editionId}/attributes": {
       "get": {
         "tags": [
           "Edition attributes"
@@ -1322,7 +1322,7 @@
         ]
       }
     },
-    "/api/products/{productId}/editions/{editionId}/features/{featureId}": {
+    "api/v1/products/{productId}/editions/{editionId}/features/{featureId}": {
       "put": {
         "tags": [
           "Edition features"
@@ -1519,7 +1519,7 @@
         ]
       }
     },
-    "/api/products/{productId}/editions/{editionId}/features": {
+    "api/v1/products/{productId}/editions/{editionId}/features": {
       "get": {
         "tags": [
           "Edition features"
@@ -1575,7 +1575,7 @@
         ]
       }
     },
-    "/api/products/{productId}/editions": {
+    "api/v1/products/{productId}/editions": {
       "post": {
         "tags": [
           "Editions"
@@ -1695,7 +1695,7 @@
         ]
       }
     },
-    "/api/products/{productId}/editions/{editionId}": {
+    "api/v1/products/{productId}/editions/{editionId}": {
       "put": {
         "tags": [
           "Editions"
@@ -1810,7 +1810,7 @@
         ]
       }
     },
-    "/api/entitlements/groups": {
+    "api/v1/entitlements/groups": {
       "get": {
         "tags": [
           "Groups"
@@ -1887,7 +1887,7 @@
         ]
       }
     },
-    "/api/entitlements/groups/{entitlementGroupId}": {
+    "api/v1/entitlements/groups/{entitlementGroupId}": {
       "get": {
         "tags": [
           "Groups"
@@ -1942,7 +1942,7 @@
         ]
       }
     },
-    "/api/entitlements/groups/{entitlementGroupId}/activation-codes/add": {
+    "api/v1/entitlements/groups/{entitlementGroupId}/activation-codes/add": {
       "patch": {
         "tags": [
           "Groups"
@@ -1991,7 +1991,7 @@
         ]
       }
     },
-    "/api/entitlements/groups/{entitlementGroupId}/activation-codes/generate": {
+    "api/v1/entitlements/groups/{entitlementGroupId}/activation-codes/generate": {
       "patch": {
         "tags": [
           "Groups"
@@ -2047,7 +2047,7 @@
         ]
       }
     },
-    "/api/entitlements/groups/{entitlementGroupId}/activation-codes/remove": {
+    "api/v1/entitlements/groups/{entitlementGroupId}/activation-codes/remove": {
       "patch": {
         "tags": [
           "Groups"
@@ -2096,7 +2096,7 @@
         ]
       }
     },
-    "/api/entitlements": {
+    "api/v1/entitlements": {
       "post": {
         "tags": [
           "General entitlement operations"
@@ -2225,7 +2225,7 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}": {
+    "api/v1/entitlements/{entitlementId}": {
       "get": {
         "tags": [
           "General entitlement operations"
@@ -2336,7 +2336,7 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}/activate": {
+    "api/v1/entitlements/{entitlementId}/activate": {
       "patch": {
         "tags": [
           "General entitlement operations"
@@ -2372,7 +2372,7 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}/change-offering": {
+    "api/v1/entitlements/{entitlementId}/change-offering": {
       "patch": {
         "tags": [
           "General entitlement operations"
@@ -2430,7 +2430,101 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}/activations": {
+    "api/v1/entitlements/{entitlementId}/reset-overrides": {
+      "patch": {
+        "tags": [
+          "General entitlement operations"
+        ],
+        "summary": "Reset entitlement overrides",
+        "description": "This method allows to reset entitlement overrides to match current product configuration.\nEach field can be reset individually by setting corresponding field to true.\nThis method can also to restore current configuration for features and attributes by sending\nappropriate keys literals in features and attributes arrays.\nIf any of requested fields was not overridden but current product configuration is different\nfrom default it still will be updated with current value from product configuration.\nIf reset seatCount or overdraftSeatLimit fields where used and current product configuration\nresults in lower seat count than seats currently used in entitlement it will fail unless forceSeatCount\nquery string parameter is set to true.",
+        "operationId": "Entitlements_ResetOverrides",
+        "parameters": [
+          {
+            "name": "entitlementId",
+            "in": "path",
+            "required": true,
+            "description": "Entitlement identifier",
+            "schema": {
+              "type": "string",
+              "format": "EntitlementId",
+              "example": "ent_oH_hPJ3BgEO172Yd9-KuTg"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "forceSeatCount",
+            "in": "query",
+            "description": "Force seat count change",
+            "schema": {
+              "type": "boolean"
+            },
+            "x-position": 2
+          }
+        ],
+        "requestBody": {
+          "x-name": "model",
+          "description": "Properties required to reset entitlement overrides",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetEntitlementOverridesApiRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 3
+        },
+        "responses": {
+          "204": {
+            "description": "Operation completed successfully"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "entitlements:admin"
+            ]
+          }
+        ]
+      }
+    },
+    "api/v1/entitlements/{entitlementId}/renew": {
+      "patch": {
+        "tags": [
+          "General entitlement operations"
+        ],
+        "summary": "Renew entitlement",
+        "description": "Renews a subscription entitlement. This method is specially designed for renewal\nof previously activated subscription entitlements. The new expiry date is determined\nusing following rules:\n* If the expiration date has passed but the grace period is active, the new expiry date\nwill be calculated by adding the subscription period to the current expiry date.\n* If the grace period has either expired or not defined at all, the expiry date will\nbe computed by adding the subscription period to the current date.\n* If the expiry date is still in the future, the new expiry date will be determined\nby adding the subscription period to the current expiry date.\n            \nThis method also resets all consumption token feature usage at the beginning of the\nnew subscription period.",
+        "operationId": "Entitlements_Renew",
+        "parameters": [
+          {
+            "name": "entitlementId",
+            "in": "path",
+            "required": true,
+            "description": "Entitlement identifier",
+            "schema": {
+              "type": "string",
+              "format": "EntitlementId",
+              "example": "ent_oH_hPJ3BgEO172Yd9-KuTg"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation completed successfully"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "entitlements:admin"
+            ]
+          }
+        ]
+      }
+    },
+    "api/v1/entitlements/{entitlementId}/activations": {
       "get": {
         "tags": [
           "General entitlement operations"
@@ -2507,7 +2601,7 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}/activations-log": {
+    "api/v1/entitlements/{entitlementId}/activations-log": {
       "get": {
         "tags": [
           "General entitlement operations"
@@ -2606,7 +2700,7 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}/feature/{featureId}/reset": {
+    "api/v1/entitlements/{entitlementId}/feature/{featureId}/reset": {
       "patch": {
         "tags": [
           "General entitlement operations"
@@ -2654,7 +2748,7 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}/export": {
+    "api/v1/entitlements/{entitlementId}/export": {
       "post": {
         "tags": [
           "General entitlement operations"
@@ -2709,7 +2803,7 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}/export/token": {
+    "api/v1/entitlements/{entitlementId}/export/token": {
       "post": {
         "tags": [
           "General entitlement operations"
@@ -2752,7 +2846,7 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}/import": {
+    "api/v1/entitlements/{entitlementId}/import": {
       "post": {
         "tags": [
           "General entitlement operations"
@@ -2800,7 +2894,7 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}/provision": {
+    "api/v1/entitlements/{entitlementId}/provision": {
       "post": {
         "tags": [
           "General entitlement operations"
@@ -2870,7 +2964,7 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}/disable": {
+    "api/v1/entitlements/{entitlementId}/disable": {
       "patch": {
         "tags": [
           "General entitlement operations"
@@ -2906,7 +3000,7 @@
         ]
       }
     },
-    "/api/entitlements/{entitlementId}/enable": {
+    "api/v1/entitlements/{entitlementId}/enable": {
       "patch": {
         "tags": [
           "General entitlement operations"
@@ -2942,7 +3036,7 @@
         ]
       }
     },
-    "/api/account/eup/settings": {
+    "api/v1/account/eup/settings": {
       "get": {
         "tags": [
           "End User Portal"
@@ -3004,7 +3098,7 @@
         ]
       }
     },
-    "/api/account/eup/logo": {
+    "api/v1/account/eup/logo": {
       "post": {
         "tags": [
           "End User Portal"
@@ -3062,7 +3156,7 @@
         ]
       }
     },
-    "/api/account/eup/logo/{logoId}": {
+    "api/v1/account/eup/logo/{logoId}": {
       "get": {
         "tags": [
           "End User Portal"
@@ -3106,7 +3200,7 @@
         ]
       }
     },
-    "/api/account/eup/css": {
+    "api/v1/account/eup/css": {
       "post": {
         "tags": [
           "End User Portal"
@@ -3164,7 +3258,7 @@
         ]
       }
     },
-    "/api/account/eup/css/{cssId}": {
+    "api/v1/account/eup/css/{cssId}": {
       "get": {
         "tags": [
           "End User Portal"
@@ -3208,7 +3302,7 @@
         ]
       }
     },
-    "/api/features": {
+    "api/v1/features": {
       "post": {
         "tags": [
           "Global features"
@@ -3278,7 +3372,7 @@
         ]
       }
     },
-    "/api/features/{featureId}": {
+    "api/v1/features/{featureId}": {
       "put": {
         "tags": [
           "Global features"
@@ -3369,7 +3463,7 @@
         ]
       }
     },
-    "/api/account/key": {
+    "api/v1/account/key": {
       "get": {
         "tags": [
           "Keys"
@@ -3397,7 +3491,7 @@
         ]
       }
     },
-    "/api/local-license-servers": {
+    "api/v1/local-license-servers": {
       "get": {
         "tags": [
           "Local license servers"
@@ -3426,7 +3520,7 @@
         ]
       }
     },
-    "/api/local-license-servers/{localLicenseServerId}": {
+    "api/v1/local-license-servers/{localLicenseServerId}": {
       "get": {
         "tags": [
           "Local license servers"
@@ -3469,7 +3563,7 @@
         ]
       }
     },
-    "/api/local-license-servers/config": {
+    "api/v1/local-license-servers/config": {
       "get": {
         "tags": [
           "Local license servers"
@@ -3497,7 +3591,7 @@
         ]
       }
     },
-    "/api/offerings": {
+    "api/v1/offerings": {
       "post": {
         "tags": [
           "Offerings"
@@ -3626,7 +3720,7 @@
         ]
       }
     },
-    "/api/offerings/{offeringId}": {
+    "api/v1/offerings/{offeringId}": {
       "put": {
         "tags": [
           "Offerings"
@@ -3728,7 +3822,7 @@
         ]
       }
     },
-    "/api/entitlements/activations/offline": {
+    "api/v1/entitlements/activations/offline": {
       "post": {
         "tags": [
           "Activations"
@@ -3843,7 +3937,7 @@
         ]
       }
     },
-    "/api/plans": {
+    "api/v1/plans": {
       "post": {
         "tags": [
           "Plans"
@@ -3937,7 +4031,7 @@
         ]
       }
     },
-    "/api/plans/{planId}": {
+    "api/v1/plans/{planId}": {
       "put": {
         "tags": [
           "Plans"
@@ -4028,7 +4122,7 @@
         ]
       }
     },
-    "/api/products/{productId}/attributes": {
+    "api/v1/products/{productId}/attributes": {
       "post": {
         "tags": [
           "Product attributes"
@@ -4084,7 +4178,7 @@
                   "$ref": "#/components/schemas/AttributeModel"
                 },
                 "example": {
-                  "id": "atr_wTBp9m1FBUSCd_zXvIbCZQ",
+                  "id": "atr_QANqTOq4wEKrhK4FNypXAg",
                   "type": "string",
                   "key": "version",
                   "value": "1.0.0",
@@ -4153,7 +4247,7 @@
         ]
       }
     },
-    "/api/products/{productId}/attributes/{attributeId}": {
+    "api/v1/products/{productId}/attributes/{attributeId}": {
       "put": {
         "tags": [
           "Product attributes"
@@ -4325,7 +4419,7 @@
                   "$ref": "#/components/schemas/AttributeModel"
                 },
                 "example": {
-                  "id": "atr_rz8EYI0oJk62atJzYnPa2A",
+                  "id": "atr_T3UfPlIVsE6FSHgmwzwA7Q",
                   "type": "string",
                   "key": "version",
                   "value": "1.0.0",
@@ -4353,7 +4447,7 @@
         ]
       }
     },
-    "/api/products/{productId}/features": {
+    "api/v1/products/{productId}/features": {
       "post": {
         "tags": [
           "Product features"
@@ -4451,7 +4545,7 @@
         ]
       }
     },
-    "/api/products/{productId}/features/{featureId}": {
+    "api/v1/products/{productId}/features/{featureId}": {
       "put": {
         "tags": [
           "Product features"
@@ -4566,7 +4660,7 @@
         ]
       }
     },
-    "/api/products": {
+    "api/v1/products": {
       "post": {
         "tags": [
           "General product operations"
@@ -4660,7 +4754,7 @@
         ]
       }
     },
-    "/api/products/{productId}": {
+    "api/v1/products/{productId}": {
       "put": {
         "tags": [
           "General product operations"
@@ -4751,7 +4845,7 @@
         ]
       }
     },
-    "/api/account/roles": {
+    "api/v1/account/roles": {
       "get": {
         "tags": [
           "Roles"
@@ -4781,7 +4875,7 @@
         ]
       }
     },
-    "/api/account/roles/{roleId}": {
+    "api/v1/account/roles/{roleId}": {
       "get": {
         "tags": [
           "Roles"
@@ -4825,7 +4919,7 @@
         ]
       }
     },
-    "/api/tenants/api-clients": {
+    "api/v1/tenants/api-clients": {
       "post": {
         "tags": [
           "Tenants"
@@ -4867,7 +4961,7 @@
         ]
       }
     },
-    "/api/account/users": {
+    "api/v1/account/users": {
       "post": {
         "tags": [
           "Users"
@@ -4961,7 +5055,7 @@
         ]
       }
     },
-    "/api/account/users/{userId}": {
+    "api/v1/account/users/{userId}": {
       "get": {
         "tags": [
           "Users"
@@ -5052,7 +5146,7 @@
         ]
       }
     },
-    "/api/account/users/{userId}/send-invitation-email": {
+    "api/v1/account/users/{userId}/send-invitation-email": {
       "post": {
         "tags": [
           "Users"
@@ -5088,7 +5182,7 @@
         ]
       }
     },
-    "/api/account/webhooks": {
+    "api/v1/account/webhooks": {
       "post": {
         "tags": [
           "Webhooks"
@@ -5180,7 +5274,7 @@
         ]
       }
     },
-    "/api/account/webhooks/{webhookListenerId}": {
+    "api/v1/account/webhooks/{webhookListenerId}": {
       "put": {
         "tags": [
           "Webhooks"
@@ -5303,7 +5397,7 @@
         ]
       }
     },
-    "/api/account/webhooks/{webhookListenerId}/test": {
+    "api/v1/account/webhooks/{webhookListenerId}/test": {
       "post": {
         "tags": [
           "Webhooks"
@@ -5339,7 +5433,7 @@
         ]
       }
     },
-    "/api/account/webhooks/events": {
+    "api/v1/account/webhooks/events": {
       "get": {
         "tags": [
           "Webhooks"
@@ -6560,7 +6654,7 @@
           },
           "seatCount": {
             "type": "integer",
-            "description": "Regular seats available on entitlement",
+            "description": "Seat capacity of the entitlement (excluding overdraft)",
             "format": "int32",
             "example": 10
           },
@@ -6581,9 +6675,22 @@
           },
           "seatsUsed": {
             "type": "integer",
-            "description": "Number of seats currently in use",
+            "description": "Number of seats currently in use including overdraft seats",
             "format": "int32",
             "example": 5
+          },
+          "overdraftSeatsUsed": {
+            "type": "integer",
+            "description": "Number of overdraft seats currently in use. Null if OverdraftSeatLimit is None.",
+            "format": "int32",
+            "nullable": true,
+            "example": 0
+          },
+          "seatUtilizationRate": {
+            "type": "integer",
+            "description": "Percentage of seats that are currently occupied [(SeatsUsed / SeatCount) x 100%]",
+            "format": "int32",
+            "example": 50
           },
           "seatsAvailable": {
             "type": "integer",
@@ -7467,6 +7574,19 @@
             "description": "Number of seats available to activate",
             "example": 0
           },
+          "overdraftSeatsUsed": {
+            "type": "integer",
+            "description": "Number of overdraft seats currently in use. Null if OverdraftSeatLimit is None.",
+            "format": "int32",
+            "nullable": true,
+            "example": 0
+          },
+          "seatUtilizationRate": {
+            "type": "integer",
+            "description": "Percentage of seats that are currently occupied [(SeatsUsed / SeatCount) x 100%]",
+            "format": "int32",
+            "example": 100
+          },
           "activationDate": {
             "type": "string",
             "description": "Date when entitlement was activated",
@@ -7550,16 +7670,6 @@
             "description": "Entitlement expiration date",
             "format": "date-time",
             "nullable": true
-          },
-          "concurrencyMode": {
-            "description": "Concurrency mode",
-            "nullable": true,
-            "example": "concurrent",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/ConcurrencyMode"
-              }
-            ]
           },
           "leasePeriod": {
             "description": "Lease period",
@@ -7699,6 +7809,64 @@
             "format": "OfferingId",
             "minLength": 1,
             "example": "off_bH_hPJ3BgEO187Yd9-kuTg"
+          }
+        }
+      },
+      "ResetEntitlementOverridesApiRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "resetLeasePeriod": {
+            "type": "boolean",
+            "description": "Reset lease period",
+            "nullable": true
+          },
+          "resetOfflineLeasePeriod": {
+            "type": "boolean",
+            "description": "Reset offline lease period",
+            "nullable": true
+          },
+          "resetGracePeriod": {
+            "type": "boolean",
+            "description": "Reset grace period",
+            "nullable": true
+          },
+          "resetLingerPeriod": {
+            "type": "boolean",
+            "description": "Reset linger period",
+            "nullable": true
+          },
+          "resetSeatCount": {
+            "type": "boolean",
+            "description": "Reset seat count",
+            "nullable": true
+          },
+          "resetOverdraftSeatLimit": {
+            "type": "boolean",
+            "description": "Reset overdraft seat limit",
+            "nullable": true
+          },
+          "resetFeatures": {
+            "type": "array",
+            "description": "Reset features from array",
+            "nullable": true,
+            "example": [
+              "workers"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "resetAttributes": {
+            "type": "array",
+            "description": "Reset attributes from array",
+            "nullable": true,
+            "example": [
+              "version"
+            ],
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -9081,6 +9249,10 @@
             "nullable": true
           },
           "propertyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
             "type": "string",
             "nullable": true
           }

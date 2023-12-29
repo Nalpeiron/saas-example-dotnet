@@ -86,7 +86,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/activations");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/activations");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -181,7 +181,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/activations");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/activations");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -288,7 +288,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("activationId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/activations/{activationId}?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/activations/{activationId}?");
             urlBuilder_.Replace("{activationId}", System.Uri.EscapeDataString(ConvertToString(activationId, System.Globalization.CultureInfo.InvariantCulture)));
             if (force != null)
             {
@@ -379,7 +379,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("activationId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/activations/{activationId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/activations/{activationId}");
             urlBuilder_.Replace("{activationId}", System.Uri.EscapeDataString(ConvertToString(activationId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -478,7 +478,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/activations/{activationId}/checkout");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/activations/{activationId}/checkout");
             urlBuilder_.Replace("{activationId}", System.Uri.EscapeDataString(ConvertToString(activationId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -575,7 +575,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/activations/{activationId}/return");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/activations/{activationId}/return");
             urlBuilder_.Replace("{activationId}", System.Uri.EscapeDataString(ConvertToString(activationId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -803,7 +803,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/api-clients");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/api-clients");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -891,7 +891,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<ListOfApiClientListModel> GetClientListAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/api-clients");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/api-clients");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -980,7 +980,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("apiId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/api-clients/{apiId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/api-clients/{apiId}");
             urlBuilder_.Replace("{apiId}", System.Uri.EscapeDataString(ConvertToString(apiId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1206,7 +1206,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/attributes");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/attributes");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1296,7 +1296,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<AttributesListModel> GetListAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/attributes");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/attributes");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1392,7 +1392,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/attributes/{attributeId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/attributes/{attributeId}");
             urlBuilder_.Replace("{attributeId}", System.Uri.EscapeDataString(ConvertToString(attributeId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1482,7 +1482,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("attributeId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/attributes/{attributeId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/attributes/{attributeId}");
             urlBuilder_.Replace("{attributeId}", System.Uri.EscapeDataString(ConvertToString(attributeId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1717,7 +1717,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/customers/{customerId}/admin");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/customers/{customerId}/admin");
             urlBuilder_.Replace("{customerId}", System.Uri.EscapeDataString(ConvertToString(customerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1818,7 +1818,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/customers/{customerId}/admin");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/customers/{customerId}/admin");
             urlBuilder_.Replace("{customerId}", System.Uri.EscapeDataString(ConvertToString(customerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1908,7 +1908,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("customerId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/customers/{customerId}/admin");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/customers/{customerId}/admin");
             urlBuilder_.Replace("{customerId}", System.Uri.EscapeDataString(ConvertToString(customerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2138,7 +2138,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("customerId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/customers/{customerId}/eup");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/customers/{customerId}/eup");
             urlBuilder_.Replace("{customerId}", System.Uri.EscapeDataString(ConvertToString(customerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2366,7 +2366,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/customers");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/customers");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2460,7 +2460,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<PaginatedListOfCustomerModel> GetListAsync(int? pageNumber, int? pageSize, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/customers?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/customers?");
             if (pageNumber != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("pageNumber") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -2565,7 +2565,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/customers/{customerId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/customers/{customerId}");
             urlBuilder_.Replace("{customerId}", System.Uri.EscapeDataString(ConvertToString(customerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2657,7 +2657,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("customerId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/customers/{customerId}?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/customers/{customerId}?");
             urlBuilder_.Replace("{customerId}", System.Uri.EscapeDataString(ConvertToString(customerId, System.Globalization.CultureInfo.InvariantCulture)));
             if (expand != null)
             {
@@ -2754,7 +2754,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("customerId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/customers/{customerId}/disable");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/customers/{customerId}/disable");
             urlBuilder_.Replace("{customerId}", System.Uri.EscapeDataString(ConvertToString(customerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2841,7 +2841,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("customerId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/customers/{customerId}/enable");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/customers/{customerId}/enable");
             urlBuilder_.Replace("{customerId}", System.Uri.EscapeDataString(ConvertToString(customerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -3083,7 +3083,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions/{editionId}/attributes/{attributeId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions/{editionId}/attributes/{attributeId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{editionId}", System.Uri.EscapeDataString(ConvertToString(editionId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{attributeId}", System.Uri.EscapeDataString(ConvertToString(attributeId, System.Globalization.CultureInfo.InvariantCulture)));
@@ -3185,7 +3185,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("attributeId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions/{editionId}/attributes/{attributeId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions/{editionId}/attributes/{attributeId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{editionId}", System.Uri.EscapeDataString(ConvertToString(editionId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{attributeId}", System.Uri.EscapeDataString(ConvertToString(attributeId, System.Globalization.CultureInfo.InvariantCulture)));
@@ -3285,7 +3285,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("attributeId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions/{editionId}/attributes/{attributeId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions/{editionId}/attributes/{attributeId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{editionId}", System.Uri.EscapeDataString(ConvertToString(editionId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{attributeId}", System.Uri.EscapeDataString(ConvertToString(attributeId, System.Globalization.CultureInfo.InvariantCulture)));
@@ -3384,7 +3384,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("editionId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions/{editionId}/attributes");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions/{editionId}/attributes");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{editionId}", System.Uri.EscapeDataString(ConvertToString(editionId, System.Globalization.CultureInfo.InvariantCulture)));
 
@@ -3632,7 +3632,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions/{editionId}/features/{featureId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions/{editionId}/features/{featureId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{editionId}", System.Uri.EscapeDataString(ConvertToString(editionId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{featureId}", System.Uri.EscapeDataString(ConvertToString(featureId, System.Globalization.CultureInfo.InvariantCulture)));
@@ -3734,7 +3734,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("featureId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions/{editionId}/features/{featureId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions/{editionId}/features/{featureId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{editionId}", System.Uri.EscapeDataString(ConvertToString(editionId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{featureId}", System.Uri.EscapeDataString(ConvertToString(featureId, System.Globalization.CultureInfo.InvariantCulture)));
@@ -3834,7 +3834,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("featureId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions/{editionId}/features/{featureId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions/{editionId}/features/{featureId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{editionId}", System.Uri.EscapeDataString(ConvertToString(editionId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{featureId}", System.Uri.EscapeDataString(ConvertToString(featureId, System.Globalization.CultureInfo.InvariantCulture)));
@@ -3933,7 +3933,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("editionId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions/{editionId}/features");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions/{editionId}/features");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{editionId}", System.Uri.EscapeDataString(ConvertToString(editionId, System.Globalization.CultureInfo.InvariantCulture)));
 
@@ -4169,7 +4169,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -4269,7 +4269,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("productId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions?");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             if (pageNumber != null)
             {
@@ -4380,7 +4380,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions/{editionId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions/{editionId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{editionId}", System.Uri.EscapeDataString(ConvertToString(editionId, System.Globalization.CultureInfo.InvariantCulture)));
 
@@ -4476,7 +4476,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("editionId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/editions/{editionId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/editions/{editionId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{editionId}", System.Uri.EscapeDataString(ConvertToString(editionId, System.Globalization.CultureInfo.InvariantCulture)));
 
@@ -4712,7 +4712,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<PaginatedListOfEntitlementGroupModel> GetListAsync(int? pageNumber, int? pageSize, string customerId, string expand, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/groups?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/groups?");
             if (pageNumber != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("pageNumber") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -4824,7 +4824,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("entitlementGroupId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/groups/{entitlementGroupId}?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/groups/{entitlementGroupId}?");
             urlBuilder_.Replace("{entitlementGroupId}", System.Uri.EscapeDataString(ConvertToString(entitlementGroupId, System.Globalization.CultureInfo.InvariantCulture)));
             if (expand != null)
             {
@@ -4926,7 +4926,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/groups/{entitlementGroupId}/activation-codes/add");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/groups/{entitlementGroupId}/activation-codes/add");
             urlBuilder_.Replace("{entitlementGroupId}", System.Uri.EscapeDataString(ConvertToString(entitlementGroupId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -5021,7 +5021,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/groups/{entitlementGroupId}/activation-codes/generate");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/groups/{entitlementGroupId}/activation-codes/generate");
             urlBuilder_.Replace("{entitlementGroupId}", System.Uri.EscapeDataString(ConvertToString(entitlementGroupId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -5122,7 +5122,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/groups/{entitlementGroupId}/activation-codes/remove");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/groups/{entitlementGroupId}/activation-codes/remove");
             urlBuilder_.Replace("{entitlementGroupId}", System.Uri.EscapeDataString(ConvertToString(entitlementGroupId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -5360,7 +5360,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -5460,7 +5460,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<PaginatedListOfEntitlementListModel> GetListAsync(int? pageNumber, int? pageSize, string customerId, string productId, string expand, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements?");
             if (pageNumber != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("pageNumber") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -5574,7 +5574,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("entitlementId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}?");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
             if (expand != null)
             {
@@ -5682,7 +5682,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}?");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
             if (forceSeatCount != null)
             {
@@ -5779,7 +5779,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("entitlementId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/activate");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/activate");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -5889,7 +5889,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/change-offering?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/change-offering?");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
             if (forceSeatCount != null)
             {
@@ -5907,6 +5907,233 @@ namespace ZentitleSaaSDemo.Zentitle
                     var content_ = new System.Net.Http.StringContent(json_);
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PATCH");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 204)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Reset entitlement overrides
+        /// </summary>
+        /// <remarks>
+        /// This method allows to reset entitlement overrides to match current product configuration.
+        /// <br/>Each field can be reset individually by setting corresponding field to true.
+        /// <br/>This method can also to restore current configuration for features and attributes by sending
+        /// <br/>appropriate keys literals in features and attributes arrays.
+        /// <br/>If any of requested fields was not overridden but current product configuration is different
+        /// <br/>from default it still will be updated with current value from product configuration.
+        /// <br/>If reset seatCount or overdraftSeatLimit fields where used and current product configuration
+        /// <br/>results in lower seat count than seats currently used in entitlement it will fail unless forceSeatCount
+        /// <br/>query string parameter is set to true.
+        /// </remarks>
+        /// <param name="entitlementId">Entitlement identifier</param>
+        /// <param name="forceSeatCount">Force seat count change</param>
+        /// <param name="model">Properties required to reset entitlement overrides</param>
+        /// <returns>Operation completed successfully</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task ResetOverridesAsync(string entitlementId, bool? forceSeatCount, ResetEntitlementOverridesApiRequest model)
+        {
+            return ResetOverridesAsync(entitlementId, forceSeatCount, model, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Reset entitlement overrides
+        /// </summary>
+        /// <remarks>
+        /// This method allows to reset entitlement overrides to match current product configuration.
+        /// <br/>Each field can be reset individually by setting corresponding field to true.
+        /// <br/>This method can also to restore current configuration for features and attributes by sending
+        /// <br/>appropriate keys literals in features and attributes arrays.
+        /// <br/>If any of requested fields was not overridden but current product configuration is different
+        /// <br/>from default it still will be updated with current value from product configuration.
+        /// <br/>If reset seatCount or overdraftSeatLimit fields where used and current product configuration
+        /// <br/>results in lower seat count than seats currently used in entitlement it will fail unless forceSeatCount
+        /// <br/>query string parameter is set to true.
+        /// </remarks>
+        /// <param name="entitlementId">Entitlement identifier</param>
+        /// <param name="forceSeatCount">Force seat count change</param>
+        /// <param name="model">Properties required to reset entitlement overrides</param>
+        /// <returns>Operation completed successfully</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task ResetOverridesAsync(string entitlementId, bool? forceSeatCount, ResetEntitlementOverridesApiRequest model, System.Threading.CancellationToken cancellationToken)
+        {
+            if (entitlementId == null)
+                throw new System.ArgumentNullException("entitlementId");
+
+            if (model == null)
+                throw new System.ArgumentNullException("model");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/reset-overrides?");
+            urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
+            if (forceSeatCount != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("forceSeatCount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(forceSeatCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            urlBuilder_.Length--;
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var json_ = Newtonsoft.Json.JsonConvert.SerializeObject(model, _settings.Value);
+                    var content_ = new System.Net.Http.StringContent(json_);
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PATCH");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 204)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Renew entitlement
+        /// </summary>
+        /// <remarks>
+        /// Renews a subscription entitlement. This method is specially designed for renewal
+        /// <br/>of previously activated subscription entitlements. The new expiry date is determined
+        /// <br/>using following rules:
+        /// <br/>* If the expiration date has passed but the grace period is active, the new expiry date
+        /// <br/>will be calculated by adding the subscription period to the current expiry date.
+        /// <br/>* If the grace period has either expired or not defined at all, the expiry date will
+        /// <br/>be computed by adding the subscription period to the current date.
+        /// <br/>* If the expiry date is still in the future, the new expiry date will be determined
+        /// <br/>by adding the subscription period to the current expiry date.
+        /// <br/>            
+        /// <br/>This method also resets all consumption token feature usage at the beginning of the
+        /// <br/>new subscription period.
+        /// </remarks>
+        /// <param name="entitlementId">Entitlement identifier</param>
+        /// <returns>Operation completed successfully</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task RenewAsync(string entitlementId)
+        {
+            return RenewAsync(entitlementId, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Renew entitlement
+        /// </summary>
+        /// <remarks>
+        /// Renews a subscription entitlement. This method is specially designed for renewal
+        /// <br/>of previously activated subscription entitlements. The new expiry date is determined
+        /// <br/>using following rules:
+        /// <br/>* If the expiration date has passed but the grace period is active, the new expiry date
+        /// <br/>will be calculated by adding the subscription period to the current expiry date.
+        /// <br/>* If the grace period has either expired or not defined at all, the expiry date will
+        /// <br/>be computed by adding the subscription period to the current date.
+        /// <br/>* If the expiry date is still in the future, the new expiry date will be determined
+        /// <br/>by adding the subscription period to the current expiry date.
+        /// <br/>            
+        /// <br/>This method also resets all consumption token feature usage at the beginning of the
+        /// <br/>new subscription period.
+        /// </remarks>
+        /// <param name="entitlementId">Entitlement identifier</param>
+        /// <returns>Operation completed successfully</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task RenewAsync(string entitlementId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (entitlementId == null)
+                throw new System.ArgumentNullException("entitlementId");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/renew");
+            urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("PATCH");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -5990,7 +6217,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("entitlementId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/activations?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/activations?");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
             if (pageNumber != null)
             {
@@ -6105,7 +6332,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("entitlementId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/activations-log?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/activations-log?");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
             if (pageNumber != null)
             {
@@ -6223,7 +6450,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("featureId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/feature/{featureId}/reset");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/feature/{featureId}/reset");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{featureId}", System.Uri.EscapeDataString(ConvertToString(featureId, System.Globalization.CultureInfo.InvariantCulture)));
 
@@ -6314,7 +6541,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("exportRequest");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/export");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/export");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -6410,7 +6637,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("entitlementId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/export/token");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/export/token");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -6506,7 +6733,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("importRequest");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/import");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/import");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -6596,7 +6823,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("entitlementId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/provision");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/provision");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -6683,7 +6910,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("entitlementId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/provision");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/provision");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -6769,7 +6996,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("entitlementId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/disable");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/disable");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -6856,7 +7083,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("entitlementId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/{entitlementId}/enable");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/{entitlementId}/enable");
             urlBuilder_.Replace("{entitlementId}", System.Uri.EscapeDataString(ConvertToString(entitlementId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -7078,7 +7305,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<EupSettingsModel> GetSettingsAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/eup/settings");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/eup/settings");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7169,7 +7396,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/eup/settings");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/eup/settings");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7255,7 +7482,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task AddLogoAsync(FileParameter formFile, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/eup/logo");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/eup/logo");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7348,7 +7575,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task DeleteLogoAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/eup/logo");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/eup/logo");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7433,7 +7660,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("logoId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/eup/logo/{logoId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/eup/logo/{logoId}");
             urlBuilder_.Replace("{logoId}", System.Uri.EscapeDataString(ConvertToString(logoId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -7520,7 +7747,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task AddCssAsync(FileParameter formFile, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/eup/css");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/eup/css");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7613,7 +7840,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task DeleteCssAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/eup/css");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/eup/css");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7698,7 +7925,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("cssId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/eup/css/{cssId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/eup/css/{cssId}");
             urlBuilder_.Replace("{cssId}", System.Uri.EscapeDataString(ConvertToString(cssId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -7928,7 +8155,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/features");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/features");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -8018,7 +8245,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<FeaturesListModel> GetListAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/features");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/features");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -8114,7 +8341,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/features/{featureId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/features/{featureId}");
             urlBuilder_.Replace("{featureId}", System.Uri.EscapeDataString(ConvertToString(featureId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -8204,7 +8431,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("featureId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/features/{featureId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/features/{featureId}");
             urlBuilder_.Replace("{featureId}", System.Uri.EscapeDataString(ConvertToString(featureId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -8423,7 +8650,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<JWK> GetAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/key");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/key");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -8645,7 +8872,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<ListOfLocalLicenseServerModel> GetListAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/local-license-servers");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/local-license-servers");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -8736,7 +8963,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("localLicenseServerId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/local-license-servers/{localLicenseServerId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/local-license-servers/{localLicenseServerId}");
             urlBuilder_.Replace("{localLicenseServerId}", System.Uri.EscapeDataString(ConvertToString(localLicenseServerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -8817,7 +9044,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<LocalLicenseServerConfigModel> GetConfigAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/local-license-servers/config");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/local-license-servers/config");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -9046,7 +9273,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/offerings");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/offerings");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -9146,7 +9373,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<PaginatedListOfOfferingModel> GetListAsync(string productId, string planId, string expand, int? pageNumber, int? pageSize, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/offerings?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/offerings?");
             if (productId != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("productId") + "=").Append(System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -9263,7 +9490,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/offerings/{offeringId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/offerings/{offeringId}");
             urlBuilder_.Replace("{offeringId}", System.Uri.EscapeDataString(ConvertToString(offeringId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -9355,7 +9582,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("offeringId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/offerings/{offeringId}?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/offerings/{offeringId}?");
             urlBuilder_.Replace("{offeringId}", System.Uri.EscapeDataString(ConvertToString(offeringId, System.Globalization.CultureInfo.InvariantCulture)));
             if (expand != null)
             {
@@ -9592,7 +9819,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("activationRequest");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/activations/offline");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/activations/offline");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -9689,7 +9916,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("deactivationRequest");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/activations/offline");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/activations/offline");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -9778,7 +10005,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/entitlements/activations/offline");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/entitlements/activations/offline");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -10011,7 +10238,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/plans");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/plans");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -10105,7 +10332,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<PaginatedListOfPlanModel> GetListAsync(int? pageNumber, int? pageSize, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/plans?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/plans?");
             if (pageNumber != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("pageNumber") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -10210,7 +10437,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/plans/{planId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/plans/{planId}");
             urlBuilder_.Replace("{planId}", System.Uri.EscapeDataString(ConvertToString(planId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -10300,7 +10527,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("planId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/plans/{planId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/plans/{planId}");
             urlBuilder_.Replace("{planId}", System.Uri.EscapeDataString(ConvertToString(planId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -10537,7 +10764,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/attributes");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/attributes");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -10633,7 +10860,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("productId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/attributes");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/attributes");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -10737,7 +10964,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/attributes/{attributeId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/attributes/{attributeId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{attributeId}", System.Uri.EscapeDataString(ConvertToString(attributeId, System.Globalization.CultureInfo.InvariantCulture)));
 
@@ -10840,7 +11067,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/attributes/{attributeId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/attributes/{attributeId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{attributeId}", System.Uri.EscapeDataString(ConvertToString(attributeId, System.Globalization.CultureInfo.InvariantCulture)));
 
@@ -10940,7 +11167,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("attributeId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/attributes/{attributeId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/attributes/{attributeId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{attributeId}", System.Uri.EscapeDataString(ConvertToString(attributeId, System.Globalization.CultureInfo.InvariantCulture)));
 
@@ -11178,7 +11405,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/features");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/features");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -11274,7 +11501,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("productId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/features");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/features");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -11378,7 +11605,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/features/{featureId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/features/{featureId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{featureId}", System.Uri.EscapeDataString(ConvertToString(featureId, System.Globalization.CultureInfo.InvariantCulture)));
 
@@ -11478,7 +11705,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("featureId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}/features/{featureId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}/features/{featureId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{featureId}", System.Uri.EscapeDataString(ConvertToString(featureId, System.Globalization.CultureInfo.InvariantCulture)));
 
@@ -11709,7 +11936,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -11803,7 +12030,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<PaginatedListOfProductModel> GetListAsync(int? pageNumber, int? pageSize, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products?");
             if (pageNumber != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("pageNumber") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -11908,7 +12135,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -11998,7 +12225,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("productId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/products/{productId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/products/{productId}");
             urlBuilder_.Replace("{productId}", System.Uri.EscapeDataString(ConvertToString(productId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -12223,7 +12450,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<ListOfRoleListModel> GetListAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/roles");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/roles");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -12314,7 +12541,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("roleId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/roles/{roleId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/roles/{roleId}");
             urlBuilder_.Replace("{roleId}", System.Uri.EscapeDataString(ConvertToString(roleId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -12544,7 +12771,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/tenants/api-clients");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/tenants/api-clients");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -12781,7 +13008,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/users");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/users");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -12875,7 +13102,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<PaginatedListOfUserModel> GetListAsync(int? pageNumber, int? pageSize, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/users?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/users?");
             if (pageNumber != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("pageNumber") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -12975,7 +13202,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("userId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/users/{userId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/users/{userId}");
             urlBuilder_.Replace("{userId}", System.Uri.EscapeDataString(ConvertToString(userId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -13070,7 +13297,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/users/{userId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/users/{userId}");
             urlBuilder_.Replace("{userId}", System.Uri.EscapeDataString(ConvertToString(userId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -13160,7 +13387,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("userId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/users/{userId}/send-invitation-email");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/users/{userId}/send-invitation-email");
             urlBuilder_.Replace("{userId}", System.Uri.EscapeDataString(ConvertToString(userId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -13381,7 +13608,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/webhooks");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/webhooks");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -13473,7 +13700,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<PaginatedListOfWebhookModel> GetListAsync(int? pageNumber, int? pageSize, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/webhooks?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/webhooks?");
             if (pageNumber != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("pageNumber") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -13574,7 +13801,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("model");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/webhooks/{webhookListenerId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/webhooks/{webhookListenerId}");
             urlBuilder_.Replace("{webhookListenerId}", System.Uri.EscapeDataString(ConvertToString(webhookListenerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -13662,7 +13889,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("webhookListenerId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/webhooks/{webhookListenerId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/webhooks/{webhookListenerId}");
             urlBuilder_.Replace("{webhookListenerId}", System.Uri.EscapeDataString(ConvertToString(webhookListenerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -13746,7 +13973,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("webhookListenerId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/webhooks/{webhookListenerId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/webhooks/{webhookListenerId}");
             urlBuilder_.Replace("{webhookListenerId}", System.Uri.EscapeDataString(ConvertToString(webhookListenerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -13836,7 +14063,7 @@ namespace ZentitleSaaSDemo.Zentitle
                 throw new System.ArgumentNullException("webhookListenerId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/webhooks/{webhookListenerId}/test");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/webhooks/{webhookListenerId}/test");
             urlBuilder_.Replace("{webhookListenerId}", System.Uri.EscapeDataString(ConvertToString(webhookListenerId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -13916,7 +14143,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public virtual async System.Threading.Tasks.Task<ListOfWebhookEventTypeModel> GetEventListAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/account/webhooks/events");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/account/webhooks/events");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -15129,7 +15356,7 @@ namespace ZentitleSaaSDemo.Zentitle
         public int? LicenseDurationCount { get; set; }
 
         /// <summary>
-        /// Regular seats available on entitlement
+        /// Seat capacity of the entitlement (excluding overdraft)
         /// </summary>
         [Newtonsoft.Json.JsonProperty("seatCount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int SeatCount { get; set; }
@@ -15147,10 +15374,22 @@ namespace ZentitleSaaSDemo.Zentitle
         public int? OverdraftSeatCount { get; set; }
 
         /// <summary>
-        /// Number of seats currently in use
+        /// Number of seats currently in use including overdraft seats
         /// </summary>
         [Newtonsoft.Json.JsonProperty("seatsUsed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int SeatsUsed { get; set; }
+
+        /// <summary>
+        /// Number of overdraft seats currently in use. Null if OverdraftSeatLimit is None.
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("overdraftSeatsUsed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? OverdraftSeatsUsed { get; set; }
+
+        /// <summary>
+        /// Percentage of seats that are currently occupied [(SeatsUsed / SeatCount) x 100%]
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("seatUtilizationRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int SeatUtilizationRate { get; set; }
 
         /// <summary>
         /// Number of seats available to activate. Null if unlimited.
@@ -15970,6 +16209,18 @@ namespace ZentitleSaaSDemo.Zentitle
         public int SeatsAvailable { get; set; }
 
         /// <summary>
+        /// Number of overdraft seats currently in use. Null if OverdraftSeatLimit is None.
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("overdraftSeatsUsed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? OverdraftSeatsUsed { get; set; }
+
+        /// <summary>
+        /// Percentage of seats that are currently occupied [(SeatsUsed / SeatCount) x 100%]
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("seatUtilizationRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int SeatUtilizationRate { get; set; }
+
+        /// <summary>
         /// Date when entitlement was activated
         /// </summary>
         [Newtonsoft.Json.JsonProperty("activationDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -16045,13 +16296,6 @@ namespace ZentitleSaaSDemo.Zentitle
         /// </summary>
         [Newtonsoft.Json.JsonProperty("expiryDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset? ExpiryDate { get; set; }
-
-        /// <summary>
-        /// Concurrency mode
-        /// </summary>
-        [Newtonsoft.Json.JsonProperty("concurrencyMode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public ConcurrencyMode? ConcurrencyMode { get; set; }
 
         /// <summary>
         /// Lease period
@@ -16157,6 +16401,59 @@ namespace ZentitleSaaSDemo.Zentitle
         [Newtonsoft.Json.JsonProperty("offeringId", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         public string OfferingId { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class ResetEntitlementOverridesApiRequest
+    {
+        /// <summary>
+        /// Reset lease period
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("resetLeasePeriod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? ResetLeasePeriod { get; set; }
+
+        /// <summary>
+        /// Reset offline lease period
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("resetOfflineLeasePeriod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? ResetOfflineLeasePeriod { get; set; }
+
+        /// <summary>
+        /// Reset grace period
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("resetGracePeriod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? ResetGracePeriod { get; set; }
+
+        /// <summary>
+        /// Reset linger period
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("resetLingerPeriod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? ResetLingerPeriod { get; set; }
+
+        /// <summary>
+        /// Reset seat count
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("resetSeatCount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? ResetSeatCount { get; set; }
+
+        /// <summary>
+        /// Reset overdraft seat limit
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("resetOverdraftSeatLimit", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? ResetOverdraftSeatLimit { get; set; }
+
+        /// <summary>
+        /// Reset features from array
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("resetFeatures", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<string> ResetFeatures { get; set; }
+
+        /// <summary>
+        /// Reset attributes from array
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("resetAttributes", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<string> ResetAttributes { get; set; }
 
     }
 
@@ -17406,6 +17703,9 @@ namespace ZentitleSaaSDemo.Zentitle
 
         [Newtonsoft.Json.JsonProperty("propertyName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PropertyName { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("code", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Code { get; set; }
 
     }
 
