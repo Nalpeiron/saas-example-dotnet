@@ -58,13 +58,8 @@
                 </NavLink>
             </div>
             <div class="nav-item px-3">
-                <NavLink class="@(Service.FeatureExists(ZentitleService.FloatingFeatureKey) ? _activeLink : _disabledLink)" href="floating-feature">
-                    <span class="oi oi-plus" aria-hidden="true"></span> Floating feature
-                </NavLink>
-            </div>
-            <div class="nav-item px-3">
-                <NavLink class="@(Service.FeatureExists(ZentitleService.ConsumptionTokenKey) ? _activeLink : _disabledLink)" href="consumption-token">
-                    <span class="oi oi-plus" aria-hidden="true"></span> Consumption token
+                <NavLink class="@(Service.FeatureExists(ZentitleService.UsageCountKey) ? _activeLink : _disabledLink)" href="usage-count">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Usage count
                 </NavLink>
             </div>
         </div>

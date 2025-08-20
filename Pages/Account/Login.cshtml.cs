@@ -21,13 +21,13 @@ namespace ZentitleSaaSDemo.Pages.Account
             Model = new Models.Account.LoginModel();
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public Task<IActionResult> OnGetAsync()
         {
             if (HttpContext.User.Identity?.IsAuthenticated == true)
             {
-                return Redirect("/");
+                return Task.FromResult<IActionResult>(Redirect("/"));
             }
-            return Page();
+            return Task.FromResult<IActionResult>(Page());
         }
 
         public async Task<IActionResult> OnPostAsync()

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Components.Authorization;
+﻿using Microsoft.AspNetCore.Components.Authorization;
 using ZentitleSaaSDemo.Utils;
 
 namespace ZentitleSaaSDemo.Zentitle

@@ -23,10 +23,9 @@ Add users and their corresponding activation codes in the users section
 1) Add new product with edition and offering
 2) Add features with the following keys: Calendar, ProjectPlanning, Collaboration, Reporting, ReportingAdvanced, Security
 3) Add string attributes with following keys: CompanyName, PlanName
-4) Add consumption token with key: CT1
-5) Add element pool with key: EP1
-6) Add floating feature with key: FF1
-7) Add entitlement and activate if necessary
+4) Add usage count adv. feature with key: CT1
+5) Add element pool adv, feature with key: EP1
+6) Add entitlement and activate if necessary
 
 ## Setup appsettings.json
 

@@ -1,33 +1,33 @@
-﻿@page "/consumption-token"
+﻿@page "/usage-count"
 @using ZentitleSaaSDemo.Zentitle
 @attribute [Authorize]
 
-<PageTitle>ElevateSaaS : Consumption token</PageTitle>
+<PageTitle>ElevateSaaS : Usage Count</PageTitle>
 
 @inject ZentitleService Service
 
-<h4>Consumption token</h4>
+<h4>Usage Count</h4>
 
-@if (_consumptionToken != null)
+@if (_usageCount != null)
 {
     <div class="card mb-3 mt-4" style="width: 18rem;">
         <div class="card-body">
-            <strong>Available:</strong> @_consumptionToken.Available
+            <strong>Available:</strong> @_usageCount.Available
         </div>
     </div>
-    if (_consumptionToken.Available > 0)
+    if (_usageCount.Available > 0)
     {
         <button class="btn btn-primary" disabled="@_loading" @onclick="Add">Checkout</button>
     }
 }
 
 @code {
-    private ActivationFeatureModel? _consumptionToken;
+    private ActivationFeatureModel? _usageCount;
     private bool _loading;
 
     protected override async Task OnInitializedAsync()
     {
-        _consumptionToken = Service.GetConsumptionToken();
+        _usageCount = Service.GetUsageCount();
         await base.OnInitializedAsync();
     }
 
@@ -36,7 +36,7 @@
         _loading = true;
         try
         {
-            _consumptionToken = await Service.CheckoutConsumptionToken();
+            _usageCount = await Service.CheckoutUsageCount();
         }
         finally
         {
@@ -47,7 +47,7 @@
 
     private void LoadData()
     {
-        _consumptionToken = Service.GetConsumptionToken();
+        _usageCount = Service.GetUsageCount();
         StateHasChanged();
     }
 

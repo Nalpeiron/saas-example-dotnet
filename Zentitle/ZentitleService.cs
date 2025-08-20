@@ -25,8 +25,7 @@ public sealed class ZentitleService
     public string? LicenseJson { get; private set; }
     public bool HasLicense => StateModel != null;
     public static string ElementPoolKey => "EP1";
-    public static string FloatingFeatureKey => "FF1";
-    public static string ConsumptionTokenKey => "CT1";
+    public static string UsageCountKey => "CT1";
     public ZentitleServiceException? Exception { get; private set; }
 
     public string CompanyName => GetAttributeValue(CompanyAttributeKey);
@@ -88,7 +87,7 @@ public sealed class ZentitleService
         var activationsClient = await GetActivationsClient();
         try
         {
-            await activationsClient.DeleteAsync(cachedActivationModel.Id, true);
+            await activationsClient.DeleteActivationAsync(cachedActivationModel.Id, true);
         }
         catch (ApiException exception)
         {
@@ -122,32 +121,15 @@ public sealed class ZentitleService
         return FeatureStateModel(ElementPoolKey);
     }
 
-    public ActivationFeatureModel GetConsumptionToken()
+    public ActivationFeatureModel GetUsageCount()
     {
-        return FeatureStateModel(ConsumptionTokenKey);
+        return FeatureStateModel(UsageCountKey);
     }
 
-    public ActivationFeatureModel GetFloatingFeature()
+    public async Task<ActivationFeatureModel> CheckoutUsageCount()
     {
-        return FeatureStateModel(FloatingFeatureKey);
-    }
-
-    public async Task<ActivationFeatureModel> ReturnFloatingFeature()
-    {
-        await ReturnFeature(1, FloatingFeatureKey);
-        return GetFloatingFeature();
-    }
-
-    public async Task<ActivationFeatureModel> CheckoutFloatingFeature()
-    {
-        await CheckoutFeature(1, FloatingFeatureKey);
-        return GetFloatingFeature();
-    }
-
-    public async Task<ActivationFeatureModel> CheckoutConsumptionToken()
-    {
-        await CheckoutFeature(1, ConsumptionTokenKey);
-        return GetConsumptionToken();
+        await CheckoutFeature(1, UsageCountKey);
+        return GetUsageCount();
     }
 
     public async Task<ActivationFeatureModel> ReturnElementPoolFeature(int amount)
@@ -197,12 +179,12 @@ public sealed class ZentitleService
 
     private async Task ReturnFeature(int amount, string key)
     {
-        var activationsClient = await GetActivationsClient();
+        var activationsFeaturesClient = await GetActivationsFeaturesClient();
         var seatId = await RequestSeat();
         var request = new ReturnEntitlementFeatureApiRequest { Amount = amount, Key = key };
         try
         {
-            await activationsClient.ReturnFeatureAsync(seatId, request);
+            await activationsFeaturesClient.ReturnActivationFeatureAsync(seatId, request);
         }
         catch (ApiException exception)
         {
@@ -218,12 +200,12 @@ public sealed class ZentitleService
 
     private async Task CheckoutFeature(int amount, string key)
     {
-        var activationsClient = await GetActivationsClient();
+        var activationFeaturesClient = await GetActivationsFeaturesClient();
         var seatId = await RequestSeat();
         var request = new CheckoutEntitlementFeatureApiRequest { Amount = amount, Key = key };
         try
         {
-            await activationsClient.CheckoutFeatureAsync(seatId, request);
+            await activationFeaturesClient.CheckoutActivationFeatureAsync(seatId, request);
         }
         catch (ApiException exception)
         {
@@ -277,7 +259,7 @@ public sealed class ZentitleService
             SeatId = seatId
         };
 
-        var result = await activationsClient.ActivateAsync(r);
+        var result = await activationsClient.ActivateEntitlementSeatAsync(r);
         await UpdateTokenInCache(false, result);
 
         return result;
@@ -288,6 +270,13 @@ public sealed class ZentitleService
         var httpClient = await GetHttpClient();
         var activationsClient = new ActivationsClient(_zentitleOptions.ZentitleUrl, httpClient);
         return activationsClient;
+    }
+    
+    private async Task<ActivationsFeaturesClient> GetActivationsFeaturesClient()
+    {
+        var httpClient = await GetHttpClient();
+        var activationsFeaturesClient = new ActivationsFeaturesClient(_zentitleOptions.ZentitleUrl, httpClient);
+        return activationsFeaturesClient;
     }
 
     private async Task<HttpClient> GetHttpClient()
