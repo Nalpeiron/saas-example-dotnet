@@ -37,18 +37,15 @@ namespace ZentitleSaaSDemo.Pages.Account
                 return Page();
             }
 
-            var users = _configuration.GetSection("Users").Get<List<User>>();
-            var loggedUser = users.Where(x => x.Email == Model.Email && x.Password == Model.Password).SingleOrDefault();
+            var users = _configuration.GetSection("Users").Get<List<User>>() ?? [];
+            var loggedUser = users.SingleOrDefault(x => x.Email == Model.Email && x.Password == Model.Password);
 
-            if (loggedUser != null)
+            if (loggedUser is not null)
             {
                 return await LoginUser(loggedUser);
             }
-            else
-            {
-                ModelState.AddModelError("Password", "Wrong user or password");
-                return Page();
-            }
+            ModelState.AddModelError("Password", "Wrong user or password");
+            return Page();
         }
 
         private async Task<IActionResult> LoginUser(User loggedUser)

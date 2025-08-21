@@ -87,7 +87,7 @@ public sealed class ZentitleService
         var activationsClient = await GetActivationsClient();
         try
         {
-            await activationsClient.DeleteActivationAsync(cachedActivationModel.Id, true);
+            await activationsClient.DeleteAsync(cachedActivationModel.Id, true);
         }
         catch (ApiException exception)
         {
@@ -184,7 +184,7 @@ public sealed class ZentitleService
         var request = new ReturnEntitlementFeatureApiRequest { Amount = amount, Key = key };
         try
         {
-            await activationsFeaturesClient.ReturnActivationFeatureAsync(seatId, request);
+            await activationsFeaturesClient.ReturnFeatureAsync(seatId, request);
         }
         catch (ApiException exception)
         {
@@ -205,7 +205,7 @@ public sealed class ZentitleService
         var request = new CheckoutEntitlementFeatureApiRequest { Amount = amount, Key = key };
         try
         {
-            await activationFeaturesClient.CheckoutActivationFeatureAsync(seatId, request);
+            await activationFeaturesClient.CheckoutFeatureAsync(seatId, request);
         }
         catch (ApiException exception)
         {
@@ -259,7 +259,7 @@ public sealed class ZentitleService
             SeatId = seatId
         };
 
-        var result = await activationsClient.ActivateEntitlementSeatAsync(r);
+        var result = await activationsClient.ActivateAsync(r);
         await UpdateTokenInCache(false, result);
 
         return result;
@@ -271,7 +271,7 @@ public sealed class ZentitleService
         var activationsClient = new ActivationsClient(_zentitleOptions.ZentitleUrl, httpClient);
         return activationsClient;
     }
-    
+
     private async Task<ActivationsFeaturesClient> GetActivationsFeaturesClient()
     {
         var httpClient = await GetHttpClient();
