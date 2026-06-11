@@ -1,8 +1,9 @@
 # OrionSaaS Demo
 
-## Setup authentication
+## Set up authentication
 
-Add users and their corresponding activation codes in the users section
+Add users and their corresponding activation codes in the `Users` section:
+
 ```
   "Users": [
     {
@@ -18,46 +19,50 @@ Add users and their corresponding activation codes in the users section
   ],
 ```
 
-## Setup new product
+## Set up new product
 
-1) Add new product with edition and offering
-2) Add features with the following keys: Calendar, ProjectPlanning, Collaboration, Reporting, ReportingAdvanced, Security
-3) Add string attributes with following keys: CompanyName, PlanName
-4) Add usage count adv. feature with key: CT1
-5) Add element pool adv, feature with key: EP1
-6) Add entitlement and activate if necessary
+To set up a new product:
 
-## Setup appsettings.json
+1. Add a new product with an edition and an offering.
+1. Add features with the following keys: `Calendar`, `ProjectPlanning`, `Collaboration`, `Reporting`, `ReportingAdvanced`, and `Security`.
+1. Add string attributes with following keys: `CompanyName` and `PlanName`.
+1. Add usage count adv. feature with the `CT1` key.
+1. Add element pool adv, feature with the `EP1` key.
+1. Add an entitlement and activate, if necessary.
 
-Open appsettings.json and set following parameters in Zentitle section:
+## Set up appsettings.json
+
+Open `appsettings.json` and set following parameters in the `Zentitle` section:
+
 ```
   "Zentitle": {
-    "ClientId": "{Your api client ID}",
-    "ClientSecret": "{Your API Client Secret}",
-    "AuthServiceUrl": "{Zentitle Auth Url}",
-    "TenantId": "{Your Tenant ID}}",
-    "ZentitleUrl": "{Zentitle API URL}",
+    "ClientId": "<your-api-client-id>",
+    "ClientSecret": "<your-api-client-secret>",
+    "AuthServiceUrl": "<zentitle-auth-url>",
+    "TenantId": "<your-tenant-id>",
+    "ZentitleUrl": "<zentitle-api-url>",
     "Entitlement": {
-      "ProductId": "{Your Product ID}"
+      "ProductId": "<your-product-id>"
     }
   }
 ```
 
 ## Create Management API Client
-We use NSwag to generate Management API client.
 
-The Zentitle2 Management API documentation page contains the current openAPI specification file. 
-Documentation link can be found in Zentittle 2 under Account > API Credentials in Management API Details box.
+We use NSwag to generate the Management API client. To generate the client, do the following:
 
-Download openAPI specification file and save it in the Zentitle/nswag folder under the name openapi.json
+1. If you haven't done so already, install `nswag` by running the following:
 
-To generate client run following command from `Zentitle/nswag` directory
-```
-nswag run
-```
-It is reading the OpenAPI specification from API running locally (!) and creating client classes in `ZentitleClient.cs` file.
-
-To install nswag run following command
 ```
 dotnet tool install -g NSwag.ConsoleCore
 ```
+
+1. In Zentitle 2, go to the **Management API Details** box and download the openAPI specification file linked in **Account** > **API Credentials**, saving it as `openapi.json` under `Zentitle/nswag`.
+
+1. Navigate to the `Zentitle/nswag` directory.
+
+1. Generate the client by running `nswag run`.
+
+> [!note]
+> `nswag` reads the OpenAPI specification from the API running locally, which creates client classes in the `ZentitleClient.cs` file.
+
