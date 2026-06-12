@@ -2,7 +2,7 @@
 
 ## Set up authentication
 
-Add users and their corresponding activation codes in the `Users` section:
+Add users and their corresponding activation codes in the `Users` section, which is shown below:
 
 ```
   "Users": [
@@ -21,7 +21,7 @@ Add users and their corresponding activation codes in the `Users` section:
 
 ## Set up new product
 
-To set up a new product:
+To set up a new product, do the following:
 
 1. Add a new product with an edition and an offering.
 1. Add features with the following keys: `Calendar`, `ProjectPlanning`, `Collaboration`, `Reporting`, `ReportingAdvanced`, and `Security`.
@@ -32,7 +32,7 @@ To set up a new product:
 
 ## Set up appsettings.json
 
-Open `appsettings.json` and set following parameters in the `Zentitle` section:
+In the `appsettings.json` file, the `Zentitle` section, set the following parameters:
 
 ```
   "Zentitle": {
@@ -53,16 +53,16 @@ We use NSwag to generate the Management API client. To generate the client, do t
 
 1. If you haven't done so already, install `nswag` by running the following:
 
-```
-dotnet tool install -g NSwag.ConsoleCore
-```
+   ```
+   dotnet tool install -g NSwag.ConsoleCore
+   ```
 
-1. In Zentitle 2, go to the **Management API Details** box and download the openAPI specification file linked in **Account** > **API Credentials**, saving it as `openapi.json` under `Zentitle/nswag`.
+1. In Zentitle 2, from the **Management API Details** box, go to **Account** > **API Credentials** and download the openAPI specification (OAS), saving it under `Zentitle/nswag` as `openapi.json`.
 
 1. Navigate to the `Zentitle/nswag` directory.
 
 1. Generate the client by running `nswag run`.
 
 > [!note]
-> `nswag` reads the OpenAPI specification from the API running locally, which creates client classes in the `ZentitleClient.cs` file.
+> `nswag` reads the OAS from the API running locally, which creates client classes in the `ZentitleClient.cs` file.
 
