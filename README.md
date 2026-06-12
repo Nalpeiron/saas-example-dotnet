@@ -57,12 +57,12 @@ We use NSwag to generate the Management API client. To generate the client, do t
    dotnet tool install -g NSwag.ConsoleCore
    ```
 
-1. In Zentitle 2, from the **Management API Details** box, go to **Account** > **API Credentials** and download the openAPI specification (OAS), saving it under `Zentitle/nswag` as `openapi.json`.
+1. Download the [Zentitle2 Management API OpenAPI Description (OAD)](https://api.nalpeiron.io/docs) file to the `Zentitle/nswag` folder as `openapi.json`.
 
 1. Navigate to the `Zentitle/nswag` directory.
 
 1. Generate the client by running `nswag run`.
 
 > [!note]
-> `nswag` reads the OAS from the API running locally, which creates client classes in the `ZentitleClient.cs` file.
+> `nswag` reads the OAD from the API running locally, which creates client classes in the `ZentitleClient.cs` file.
 
