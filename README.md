@@ -32,7 +32,7 @@ To set up a new product, do the following:
 
 ## Set up appsettings.json
 
-In the `appsettings.json` file, the `Zentitle` section, set the following parameters:
+In the `appsettings.json` file, in the `Zentitle` section, set the following parameters:
 
 ```
   "Zentitle": {
